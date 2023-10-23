@@ -77,7 +77,11 @@ public class HomePageNewProfileUI extends javax.swing.JFrame {
 
     private void createProfilebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProfilebtnActionPerformed
 CreateAccountUI account = new CreateAccountUI();
-account.CreateAccUI();
+        account.CreateAccUI();
+        
+        dispose();
+        
+        
 
 
     }//GEN-LAST:event_createProfilebtnActionPerformed

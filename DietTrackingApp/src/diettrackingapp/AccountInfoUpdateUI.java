@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.Period;  
 import java.util.Scanner; 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -280,7 +281,7 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
         
         //sending info to database
         
-         try{
+         /* try{
              
              Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
@@ -317,11 +318,11 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
              System.out.println("We didnt do it....");
          }
        
-        
+        */
         
         dispose();
         
-        
+        JOptionPane.showMessageDialog(this, "Your Profile has been updated!");
         
         System.out.println(firstName);
         System.out.println(lastName);

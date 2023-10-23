@@ -270,10 +270,10 @@ public class CreateAccountUI extends javax.swing.JFrame {
         
         //sending info to database
         
-       //AccountSetUp newAccount = new AccountSetUp(accountNum,firstName, lastName, age, weight, height, sex, units);
-       //newAccount.addToDatabase();
+       AccountSetUp newAccount = new AccountSetUp(accountNum,firstName, lastName, age, weight, height, sex, units);
+       newAccount.AddAccount();
         
-        try {
+       /* try {
              
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
@@ -333,7 +333,7 @@ public class CreateAccountUI extends javax.swing.JFrame {
              System.out.println("Hey we fucked up");
              
          }
-       
+       */
         
         
         User localUser = new User(accountNum,firstName, lastName, age, weight, height, sex, "metric");
