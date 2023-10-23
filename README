@@ -1,0 +1,2 @@
+in order to run the module for creating the profile, you need to run HomePageNewProfileUI main class. 
+After running this module and creating the account you should be able to update your account and check the BMR claculation all during the same run, using an existing profile has not been fully implemented yet.
