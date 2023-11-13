@@ -1,3 +1,8 @@
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -7,12 +12,23 @@
  *
  * @author aryankarimi
  */
-public class HomePageNewProfileUI extends javax.swing.JFrame {
+public class StartScreenUI extends javax.swing.JFrame {
 
+    private String[] accountList;
     /**
-     * Creates new form HomePage
+     * Creates new form HomePageUI
      */
-    public HomePageNewProfileUI() {
+    
+     public StartScreenUI(String [] accList) {
+        
+        this.accountList = accList;
+
+        
+        initComponents();
+        
+    }
+     
+    public StartScreenUI() {
         initComponents();
     }
 
@@ -27,7 +43,7 @@ public class HomePageNewProfileUI extends javax.swing.JFrame {
 
         createProfilebtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        AccountList = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,7 +56,12 @@ public class HomePageNewProfileUI extends javax.swing.JFrame {
 
         jLabel1.setText("Choose Profile");
 
-        jLabel2.setText("No Profiles Available");
+        AccountList.setModel(new DefaultComboBoxModel<>(this.accountList));
+        AccountList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,42 +70,52 @@ public class HomePageNewProfileUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(145, 145, 145))))
+                        .addGap(130, 130, 130)
+                        .addComponent(createProfilebtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(createProfilebtn)))
-                .addContainerGap(131, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AccountList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
+                .addGap(132, 132, 132)
                 .addComponent(createProfilebtn)
-                .addGap(56, 56, 56)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(43, 43, 43))
+                .addGap(18, 18, 18)
+                .addComponent(AccountList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void createProfilebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProfilebtnActionPerformed
-CreateAccountUI account = new CreateAccountUI();
+        CreateAccountUI account = new CreateAccountUI();
         account.CreateAccUI();
-        
-        dispose();
-        
-        
 
+        dispose();
 
     }//GEN-LAST:event_createProfilebtnActionPerformed
+
+    private void AccountListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountListActionPerformed
+        // TODO add your handling code here:
+        int selectedValue = AccountList.getSelectedIndex()+1;
+        User localUser = new User();
+        
+        AccountSetUp findAccount = new AccountSetUp();
+        localUser = findAccount.getSelectedAccount(selectedValue);
+        
+        AccountHomePageUI home = new AccountHomePageUI(localUser);
+        home.HomePageUI(localUser);
+        
+       dispose();
+       
+    }//GEN-LAST:event_AccountListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,30 +134,38 @@ CreateAccountUI account = new CreateAccountUI();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HomePageNewProfileUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StartScreenUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HomePageNewProfileUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StartScreenUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HomePageNewProfileUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StartScreenUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HomePageNewProfileUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StartScreenUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomePageNewProfileUI().setVisible(true);
+                //new StartScreenUI().setVisible(true);
+                
+
+        AccountSetUp getAccounts = new AccountSetUp();
+        String accList [] = getAccounts.GetAllAccounts();
+        
+        for (int i=0;i<accList.length;i++){
+        System.out.println(accList[i]);
+                }
+        
+        new StartScreenUI(accList).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> AccountList;
     private javax.swing.JButton createProfilebtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

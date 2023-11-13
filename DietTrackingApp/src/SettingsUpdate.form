@@ -39,7 +39,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="107" max="32767" attributes="0"/>
+              <EmptySpace pref="98" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,12 +87,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="(Feet, inches, pounds...)"/>
+        <Property name="text" type="java.lang.String" value="(inches, pounds...)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="(Meters, kilograms...)"/>
+        <Property name="text" type="java.lang.String" value="(centimeters, kilograms...)"/>
       </Properties>
     </Component>
   </SubComponents>

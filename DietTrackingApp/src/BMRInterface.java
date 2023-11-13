@@ -15,7 +15,7 @@ public interface BMRInterface {
     
     
 
-    double BMRCalc(double height, double weight, int age, String sex, String units);
+    int BMRCalc(double height, double weight, int age, String sex, String units);
     
 }
 

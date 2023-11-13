@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
 
- */
+
 import java.time.LocalDate;  
 import java.time.Period;  
 import java.util.Scanner; 
@@ -13,22 +10,14 @@ import javax.swing.JOptionPane;
  *
  * @author aryankarimi
  */
-public class AccountInfoUpdateUI extends javax.swing.JFrame {
-
-    private User user;
+public class CreateAccountUI extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form AccountSettings
      */
-    public AccountInfoUpdateUI() {
+    public CreateAccountUI() {
         initComponents();
-    }
-    
-    public AccountInfoUpdateUI(User localUser) {
-        initComponents();
-        
-        this.user = localUser; 
-        
     }
 
     /**
@@ -260,12 +249,12 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
         
         //getting all data inserted from user 
         
+        int accountNum = 0;
         String firstName = editFirstName.getText();
         String lastName = editLastName.getText();
         String sex = editSex.getSelectedItem().toString();
         double height = Double.parseDouble(editHeight.getText());
         double weight = Double.parseDouble(editWeight.getText());
-        int accID = this.user.getAccID();
         
         LocalDate dob = LocalDate.parse(editYear.getText()+"-"+editMonth.getText()+"-"+editDay.getText());
         LocalDate currentDate = LocalDate.now();
@@ -273,56 +262,27 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
         Period period = Period.between(dob,currentDate);
         
         int age = period.getYears();
-        
-        //AccountSetup updatedAccount = new AccountSetup(accountNum,firstName, lastName, age, weight, height, sex, units);
-        //Account.UpdateAccount();
-
+        String units = "metric";
         
         
         //sending info to database
         
-         /* try{
-             
-             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
-           
-            PreparedStatement update = connect.prepareStatement("UPDATE INFO SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ? WHERE AccountID = ?;");
-           
-           
-           update.setString(1,firstName);
-           update.setString(2,lastName);
-           update.setInt(3,age);
-           update.setDouble(4,weight);
-           update.setDouble(5,height);
-           update.setString(6,sex);
-           update.setInt(7,accID);
-           
-
-           update.executeUpdate();
-           
-           System.out.println("We did it!");
-           
-            
-            
-            
-           //my SQL statement 
-            
-           
-           
-           //Executing SQL query "(userFirstName, userLastName,userAge,userWeight,userHeight,userSex)   '"+sex+", '"+height+", '"+weight+", '"+age+"')";
-           
-           
-           
-           
-         }catch (Exception e){
-             System.out.println("We didnt do it....");
-         }
-       
-        */
+       AccountSetUp newAccount = new AccountSetUp(accountNum,firstName, lastName, age, weight, height, sex, units);
+       newAccount.AddAccount();
+        
+        
+        User localUser = new User(accountNum,firstName, lastName, age, weight, height, sex, "Metric");
         
         dispose();
         
-        JOptionPane.showMessageDialog(this, "Your Profile has been updated!");
+        JOptionPane.showMessageDialog(this, "Your Profile has been created!");
+        
+        AccountHomePageUI home = new AccountHomePageUI(localUser);
+        home.HomePageUI(localUser);
+        
+        ;
+        
+        
         
         System.out.println(firstName);
         System.out.println(lastName);
@@ -345,36 +305,12 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void InfoUpdate(User user) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateAccountUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateAccountUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateAccountUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateAccountUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
+    public void CreateAccUI() {
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AccountInfoUpdateUI(user).setVisible(true);
-                
+                new CreateAccountUI().setVisible(true);
             }
         });
     }

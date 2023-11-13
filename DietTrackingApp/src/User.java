@@ -31,6 +31,18 @@ public class User {
         
         
     }
+     public User(int accountNum,String fName, String lName, int age, double weight, double height, String sex){
+        
+        this.firstName = fName;
+        this.lastName = lName;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.sex = sex;
+        this.accID = accountNum;
+        
+        
+    }
     
     public User(){
         this.firstName = "";

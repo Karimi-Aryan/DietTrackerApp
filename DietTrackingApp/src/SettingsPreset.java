@@ -9,9 +9,9 @@
  */
 public interface SettingsPreset {
     
-    String metricUnits = "metric" ;
+    String metricUnits = "Metric" ;
     String ImperialUnits = "Imperial";
     
-    String unitsUsed = "metric";
+    String unitsUsed = "Metric";
     
 }

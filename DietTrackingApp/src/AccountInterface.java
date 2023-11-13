@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
@@ -14,5 +17,11 @@ public interface AccountInterface {
     void AddAccount();
 
     void UpdateAccount();
+    
+    String [] GetAllAccounts();
+    
+    User getSelectedAccount(int i);
+    
+    
     
 }

@@ -72,9 +72,9 @@ public class SettingsUpdate extends javax.swing.JFrame{
             }
         });
 
-        jLabel2.setText("(Feet, inches, pounds...)");
+        jLabel2.setText("(inches, pounds...)");
 
-        jLabel3.setText("(Meters, kilograms...)");
+        jLabel3.setText("(centimeters, kilograms...)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,7 +92,7 @@ public class SettingsUpdate extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

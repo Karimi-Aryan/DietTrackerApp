@@ -67,12 +67,19 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="editWeight" alignment="0" max="32767" attributes="0"/>
-                              <Component id="editHeight" alignment="0" max="32767" attributes="0"/>
-                              <Component id="editSex" alignment="0" max="32767" attributes="0"/>
-                              <Component id="editLastName" alignment="0" max="32767" attributes="0"/>
-                              <Component id="editFirstName" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="editWeight" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="editHeight" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="editSex" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="editLastName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="editFirstName" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="heightUnitLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="WeightUnitLabel" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="editYear" min="-2" pref="46" max="-2" attributes="0"/>
@@ -95,16 +102,16 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="editFirstName" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -121,11 +128,13 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="editHeight" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="heightUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="editWeight" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="WeightUnitLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -244,6 +253,20 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editFirstNameActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="heightUnitLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="cm"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="} else if (this.user.getUnits() == &quot;Imperial&quot;){&#xa;heightUnitLabel.setText(&quot;inches&quot;);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="if(this.user.getUnits() == &quot;Metric&quot;){"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="WeightUnitLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="kg"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

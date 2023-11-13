@@ -13,14 +13,22 @@ import javax.swing.JOptionPane;
  *
  * @author aryankarimi
  */
-public class CreateAccountUI extends javax.swing.JFrame {
-    
+public class AccountInfoUpdateUI extends javax.swing.JFrame {
+
+    private User user;
 
     /**
      * Creates new form AccountSettings
      */
-    public CreateAccountUI() {
+    public AccountInfoUpdateUI() {
         initComponents();
+    }
+    
+    public AccountInfoUpdateUI(User localUser) {
+        initComponents();
+        
+        this.user = localUser; 
+        
     }
 
     /**
@@ -54,6 +62,8 @@ public class CreateAccountUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         editLastName = new javax.swing.JTextField();
         editFirstName = new javax.swing.JTextField();
+        heightUnitLabel = new javax.swing.JLabel();
+        WeightUnitLabel = new javax.swing.JLabel();
 
         jCheckBox2.setText("jCheckBox2");
 
@@ -133,6 +143,14 @@ public class CreateAccountUI extends javax.swing.JFrame {
             }
         });
 
+        if(this.user.getUnits() == "Metric"){
+            heightUnitLabel.setText("cm");
+        } else if (this.user.getUnits() == "Imperial"){
+            heightUnitLabel.setText("inches");
+        }
+
+        WeightUnitLabel.setText("kg");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,12 +179,17 @@ public class CreateAccountUI extends javax.swing.JFrame {
                                     .addComponent(jLabel9))
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(editWeight, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(editHeight, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(editSex, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editLastName, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(editFirstName, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(editWeight, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editHeight, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editSex, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(editLastName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editFirstName, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(heightUnitLabel)
+                                    .addComponent(WeightUnitLabel)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(editYear, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,15 +205,15 @@ public class CreateAccountUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel9))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(editFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
@@ -202,11 +225,13 @@ public class CreateAccountUI extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(editHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(heightUnitLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(editWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(WeightUnitLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -252,12 +277,12 @@ public class CreateAccountUI extends javax.swing.JFrame {
         
         //getting all data inserted from user 
         
-        int accountNum = 0;
         String firstName = editFirstName.getText();
         String lastName = editLastName.getText();
         String sex = editSex.getSelectedItem().toString();
         double height = Double.parseDouble(editHeight.getText());
         double weight = Double.parseDouble(editWeight.getText());
+        int accID = this.user.getAccID();
         
         LocalDate dob = LocalDate.parse(editYear.getText()+"-"+editMonth.getText()+"-"+editDay.getText());
         LocalDate currentDate = LocalDate.now();
@@ -265,89 +290,56 @@ public class CreateAccountUI extends javax.swing.JFrame {
         Period period = Period.between(dob,currentDate);
         
         int age = period.getYears();
-        String units = "metric";
+        
+        AccountSetUp updatedAccount = new AccountSetUp(accID,firstName, lastName, age, weight, height, sex);
+        updatedAccount.UpdateAccount();
+
         
         
         //sending info to database
         
-       AccountSetUp newAccount = new AccountSetUp(accountNum,firstName, lastName, age, weight, height, sex, units);
-       newAccount.AddAccount();
-        
-       /* try {
+         /* try{
              
-            Class.forName("com.mysql.cj.jdbc.Driver");
+             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
-            
-            Statement stm = connect.createStatement();
            
-           //check what id is the last one
+            PreparedStatement update = connect.prepareStatement("UPDATE INFO SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ? WHERE AccountID = ?;");
            
            
-           String sql2 = "SELECT AccountID FROM INFO";
-           String sql3 = "SELECT Max(AccountID) FROM INFO";
+           update.setString(1,firstName);
+           update.setString(2,lastName);
+           update.setInt(3,age);
+           update.setDouble(4,weight);
+           update.setDouble(5,height);
+           update.setString(6,sex);
+           update.setInt(7,accID);
            
-           
-            
-            ResultSet rs = stm.executeQuery(sql2);
-            
-            if(rs.next()){
-                
-                //if we have an account, find the max ID
-                
-                System.out.println("we have a profile");
-                
-                ResultSet rs1Max = stm.executeQuery(sql3);
-                rs1Max.next();
-                accountNum = rs1Max.getInt("Max(AccountID)") + 1;
-                
-                System.out.println(rs1Max.getInt("Max(AccountID)"));
-                System.out.println(accountNum);
 
-            } else {
-                //if no previous account, we make the first one
-                
-                accountNum = 0;
-                
-                System.out.println("no profile");
-            }
+           update.executeUpdate();
+           
+           System.out.println("We did it!");
+           
             
             
             
+           //my SQL statement 
             
-            //String sqlADD = "INSERT INTO INFO VALUES('4','1','1','1','1','1','1')";
-            String sqlADD = "INSERT INTO INFO VALUES ("+accountNum+", '"+firstName+"', '"+lastName+"', '"+age+"','"+weight+"','"+height+"','"+sex+"')";
-
-            
-            stm.executeUpdate(sqlADD);
-            
-            String sqlAddSettings = "INSERT INTO Settings VALUES ("+accountNum+", 'metric')";
-            
-            stm.executeUpdate(sqlAddSettings);
-            
-        
+           
+           
+           //Executing SQL query "(userFirstName, userLastName,userAge,userWeight,userHeight,userSex)   '"+sex+", '"+height+", '"+weight+", '"+age+"')";
+           
            
            
            
          }catch (Exception e){
-             
-             System.out.println("Hey we fucked up");
-             
+             System.out.println("We didnt do it....");
          }
-       */
-        
-        
-        User localUser = new User(accountNum,firstName, lastName, age, weight, height, sex, "metric");
+       
+        */
         
         dispose();
         
-        JOptionPane.showMessageDialog(this, "Your Profile has been created!");
-        
-        AccountHomePage home = new AccountHomePage(localUser);
-        home.HomePageUI(localUser);
-        
-        ;
-        
-        
+        JOptionPane.showMessageDialog(this, "Your Profile has been updated!");
         
         System.out.println(firstName);
         System.out.println(lastName);
@@ -366,21 +358,47 @@ public class CreateAccountUI extends javax.swing.JFrame {
     private void editFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFirstNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editFirstNameActionPerformed
+  
 
     /**
      * @param args the command line arguments
      */
-    public void CreateAccUI() {
-        
+    public void InfoUpdate(User user) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CreateAccountUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CreateAccountUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CreateAccountUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CreateAccountUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateAccountUI().setVisible(true);
+                new AccountInfoUpdateUI(user).setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel WeightUnitLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -392,6 +410,7 @@ public class CreateAccountUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> editSex;
     private javax.swing.JTextField editWeight;
     private javax.swing.JTextField editYear;
+    private javax.swing.JLabel heightUnitLabel;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
