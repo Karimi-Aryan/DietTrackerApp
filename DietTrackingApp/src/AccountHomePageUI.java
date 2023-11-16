@@ -118,7 +118,11 @@ User user = new User();
     }// </editor-fold>//GEN-END:initComponents
 
     private void settingsChangeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsChangeBTNActionPerformed
-        // TODO add your handling code here:
+
+        SettingsUpdateUI settings = new SettingsUpdateUI();
+        settings.SettingsUpdate(this.user);
+        
+
     }//GEN-LAST:event_settingsChangeBTNActionPerformed
 
     private void bmrCalcBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmrCalcBTNActionPerformed

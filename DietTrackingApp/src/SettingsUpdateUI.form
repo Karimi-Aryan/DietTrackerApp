@@ -29,17 +29,17 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="imperialUnitbtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="metricUnitbtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="metricUnitbtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="ImperialBTN" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="98" max="32767" attributes="0"/>
+              <EmptySpace pref="100" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,9 +49,9 @@
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="imperialUnitbtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="ImperialBTN" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -68,14 +68,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Choose Unit of measurement"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="imperialUnitbtn">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Imperial"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imperialUnitbtnActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="metricUnitbtn">
       <Properties>
@@ -94,6 +86,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="(centimeters, kilograms...)"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ImperialBTN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Imperial"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ImperialBTNActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -7,11 +7,10 @@
  *
  * @author aryankarimi
  */
-public interface SettingsPreset {
-    
-    String metricUnits = "Metric" ;
-    String ImperialUnits = "Imperial";
-    
-    String unitsUsed = "Metric";
+public interface SettingsInterface {
+
+   void MetricSetting();
+   void ImperialSetting();
+   
     
 }

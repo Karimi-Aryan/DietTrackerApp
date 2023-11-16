@@ -65,9 +65,14 @@ public class AccountSetUp implements AccountInterface {
         
         try {
              
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
+           // Class.forName("com.mysql.cj.jdbc.Driver");
+           // Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
             
+           SQLConnection sqlConnect = new SQLConnection();
+          Connection connect = sqlConnect.SQLConnect();
+           
+           
+           
             Statement stm = connect.createStatement();
            
            //check what id is the last one
@@ -135,9 +140,13 @@ public class AccountSetUp implements AccountInterface {
         
         try{
              
-             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
+            // Class.forName("com.mysql.cj.jdbc.Driver");
+            //Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
            
+              SQLConnection sqlConnect = new SQLConnection();
+          Connection connect = sqlConnect.SQLConnect();
+            
+            
             PreparedStatement update = connect.prepareStatement("UPDATE INFO SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ? WHERE AccountID = ?;");
            
            
@@ -175,11 +184,14 @@ public class AccountSetUp implements AccountInterface {
         
         try{
         
-        Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
+        //Class.forName("com.mysql.cj.jdbc.Driver");
+           // Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
             
+             SQLConnection sqlConnect = new SQLConnection();
+          Connection connect = sqlConnect.SQLConnect();
+           
             Statement stm = connect.createStatement();
-            //ResultSet rs = stm.executeQuery(QUERY);
+            
             //find max number of accounts 
             
            String sql2 = "SELECT AccountID FROM INFO";
@@ -251,9 +263,13 @@ public class AccountSetUp implements AccountInterface {
         User accSelect = new User();
           try{
              
-             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
+            // Class.forName("com.mysql.cj.jdbc.Driver");
+            //Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
            
+              SQLConnection sqlConnect = new SQLConnection();
+          Connection connect = sqlConnect.SQLConnect();
+            
+            
            Statement stmt = connect.createStatement();
            ResultSet rs = stmt.executeQuery(query);
            
@@ -273,7 +289,7 @@ public class AccountSetUp implements AccountInterface {
        this.units =  rs.getString("userUnits");
        
        System.out.println(this.weight);
-       System.out.println(this.height);
+       System.out.println(this.units);
        
            
            

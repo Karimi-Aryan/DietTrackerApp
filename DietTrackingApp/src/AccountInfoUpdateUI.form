@@ -223,6 +223,8 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editSexActionPerformed"/>
       </Events>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="}&#xa;else {&#xa;editSex.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Female&quot;, &quot;Male&quot; }));&#xa;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="if (this.user.getSex().equals(&quot;Male&quot;)){"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
@@ -259,14 +261,18 @@
         <Property name="text" type="java.lang.String" value="cm"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="} else if (this.user.getUnits() == &quot;Imperial&quot;){&#xa;heightUnitLabel.setText(&quot;inches&quot;);&#xa;}"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="if(this.user.getUnits() == &quot;Metric&quot;){"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="} else if (this.user.getUnits().equals(&quot;Imperial&quot;)){&#xa;heightUnitLabel.setText(&quot;inches&quot;);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="System.out.println(this.user.getUnits());&#xa;if (this.user.getUnits().equals(&quot;Metric&quot;)){"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="WeightUnitLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="kg"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="}else if (this.user.getUnits().equals(&quot;Imperial&quot;)){&#xa;WeightUnitLabel.setText(&quot;pounds&quot;);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="if (this.user.getUnits().equals(&quot;Metric&quot;)){"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

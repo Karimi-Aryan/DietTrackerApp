@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Period;  
 import java.util.Scanner; 
 import java.sql.*;
+import java.time.Year;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,6 +52,8 @@ public class CreateAccountUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         editLastName = new javax.swing.JTextField();
         editFirstName = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         jCheckBox2.setText("jCheckBox2");
 
@@ -130,6 +133,10 @@ public class CreateAccountUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setText("cm");
+
+        jLabel11.setText("kg");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,12 +165,17 @@ public class CreateAccountUI extends javax.swing.JFrame {
                                     .addComponent(jLabel9))
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(editWeight, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(editHeight, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(editSex, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editLastName, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(editFirstName, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(editWeight, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editHeight, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editSex, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(editLastName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editFirstName, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(editYear, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,11 +211,13 @@ public class CreateAccountUI extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(editHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(editWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -247,6 +261,55 @@ public class CreateAccountUI extends javax.swing.JFrame {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         
+        //Error handling 
+        
+        if (editFirstName.getText().length() >45 || editLastName.getText().length() > 45){
+            
+            //show: too many characters for first or last name
+        }
+        
+        
+        if (editWeight.getText().length() >45 || editHeight.getText().length() > 45){
+            
+            //show: number is too high for height or weight 
+        }
+        
+        
+        if(Double.parseDouble(editWeight.getText()) <0 || Double.parseDouble(editHeight.getText()) <0){
+            
+            //show: must pick positive number
+        }
+        
+        if(Integer.parseInt(editYear.getText()) > Year.now().getValue()){
+             
+            //show: must put valid year
+        }
+        
+        if(Integer.parseInt(editMonth.getText())<10 && editMonth.getText().substring(0,1) != "0" ){
+            
+            //add 0 to month number to avoid any date errors 
+            
+            editMonth.setText("0"+editMonth.getText());
+        }
+        
+        if(Integer.parseInt(editDay.getText())<10 && editDay.getText().substring(0,1) != "0" ){
+            
+            //add 0 to day number to avoid any date errors 
+            
+            editDay.setText("0"+editDay.getText());
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //getting all data inserted from user 
         
         int accountNum = 0;
@@ -262,7 +325,7 @@ public class CreateAccountUI extends javax.swing.JFrame {
         Period period = Period.between(dob,currentDate);
         
         int age = period.getYears();
-        String units = "metric";
+        String units = "Metric";
         
         
         //sending info to database
@@ -329,6 +392,8 @@ public class CreateAccountUI extends javax.swing.JFrame {
     private javax.swing.JTextField editYear;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

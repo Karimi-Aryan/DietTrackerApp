@@ -25,9 +25,13 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
     }
     
     public AccountInfoUpdateUI(User localUser) {
-        initComponents();
         
         this.user = localUser; 
+        initComponents();
+        editFirstName.setText(this.user.getFirstName());
+        editLastName.setText(this.user.getLastName());
+        editHeight.setText(Double.toString((this.user.getHeight())));
+        editWeight.setText(Double.toString(this.user.getWeight()));
         
     }
 
@@ -113,7 +117,13 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
 
         jLabel7.setText("/");
 
-        editSex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        if (this.user.getSex().equals("Male")){
+            editSex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        }
+        else {
+            editSex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male" }));
+
+        }
         editSex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editSexActionPerformed(evt);
@@ -143,13 +153,18 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
             }
         });
 
-        if(this.user.getUnits() == "Metric"){
+        System.out.println(this.user.getUnits());
+        if (this.user.getUnits().equals("Metric")){
             heightUnitLabel.setText("cm");
-        } else if (this.user.getUnits() == "Imperial"){
+        } else if (this.user.getUnits().equals("Imperial")){
             heightUnitLabel.setText("inches");
         }
 
-        WeightUnitLabel.setText("kg");
+        if (this.user.getUnits().equals("Metric")){
+            WeightUnitLabel.setText("kg");
+        }else if (this.user.getUnits().equals("Imperial")){
+            WeightUnitLabel.setText("pounds");
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

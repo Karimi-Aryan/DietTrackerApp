@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.*;
+import javax.swing.JOptionPane;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -13,23 +14,23 @@ import java.sql.*;
  * @author aryankarimi
  */
 
-public class SettingsUpdate extends javax.swing.JFrame{
+public class SettingsUpdateUI extends javax.swing.JFrame{
 
     /**
      * Creates new form Settings
      */
     int accID = 0;
-    public SettingsUpdate() {
+    public SettingsUpdateUI() {
         initComponents();
      
         
        
     }
     
-    public SettingsUpdate(int accountID) {
+    public SettingsUpdateUI(int accountID) {
         initComponents();
         
-        accID = accountID;
+        this.accID = accountID;
         
         
        
@@ -49,21 +50,14 @@ public class SettingsUpdate extends javax.swing.JFrame{
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        imperialUnitbtn = new javax.swing.JButton();
         metricUnitbtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        ImperialBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Choose Unit of measurement");
-
-        imperialUnitbtn.setText("Imperial");
-        imperialUnitbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imperialUnitbtnActionPerformed(evt);
-            }
-        });
 
         metricUnitbtn.setText("Metric");
         metricUnitbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +70,13 @@ public class SettingsUpdate extends javax.swing.JFrame{
 
         jLabel3.setText("(centimeters, kilograms...)");
 
+        ImperialBTN.setText("Imperial");
+        ImperialBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImperialBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,13 +87,13 @@ public class SettingsUpdate extends javax.swing.JFrame{
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imperialUnitbtn)
-                            .addComponent(metricUnitbtn))
-                        .addGap(32, 32, 32)
+                            .addComponent(metricUnitbtn)
+                            .addComponent(ImperialBTN))
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,9 +101,9 @@ public class SettingsUpdate extends javax.swing.JFrame{
                 .addGap(46, 46, 46)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imperialUnitbtn)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(ImperialBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(metricUnitbtn)
@@ -114,41 +115,37 @@ public class SettingsUpdate extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void metricUnitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metricUnitbtnActionPerformed
-        try{
-    Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
-            
-            Statement stm = connect.createStatement();
-            
-             String sql = "update Settings set unitsUsed = 'metric' where AccountID in (1);";
-             stm.executeUpdate(sql);
-         
-    
-}catch (Exception e){
-    
-}
+      
+        SettingSetUp settings = new SettingSetUp(this.accID);
+        settings.MetricSetting();
+        
+        dispose();
+        
+        JOptionPane.showMessageDialog(this, "Your Settings has been updated!");
     }//GEN-LAST:event_metricUnitbtnActionPerformed
 
-    private void imperialUnitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imperialUnitbtnActionPerformed
-   try{
-    Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
-            
-            Statement stm = connect.createStatement();
-            
-            System.out.println("we connected");
-            
-             String sql = "update Settings set unitsUsed = 'imperial' where AccountID in (1);";
-             stm.executeUpdate(sql);
-             
-             System.out.println("we ran it?");
-         
-    
-}catch (Exception e){
-    
-}    }//GEN-LAST:event_imperialUnitbtnActionPerformed
+    private void ImperialBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImperialBTNActionPerformed
 
-    
+        SettingSetUp settings = new SettingSetUp(this.accID);
+        settings.ImperialSetting();
+        
+        dispose();
+        
+        JOptionPane.showMessageDialog(this, "Your Settings has been updated!");
+
+
+    }//GEN-LAST:event_ImperialBTNActionPerformed
+
+    public void SettingsUpdate(User user) {
+        
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SettingsUpdateUI(user.getAccID()).setVisible(true);
+                
+            }
+        });
+    }
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -177,7 +174,7 @@ public class SettingsUpdate extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SettingsUpdate().setVisible(true);
+                new SettingsUpdateUI().setVisible(true);
             }
         });
         
@@ -187,7 +184,7 @@ public class SettingsUpdate extends javax.swing.JFrame{
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton imperialUnitbtn;
+    private javax.swing.JButton ImperialBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
