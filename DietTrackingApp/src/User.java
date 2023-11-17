@@ -17,6 +17,7 @@ public class User {
     private  String sex;
     private  String units;
     private int accID;
+    private String dob;
     
     public User(int accountNum,String fName, String lName, int age, double weight, double height, String sex, String units){
         
@@ -43,16 +44,24 @@ public class User {
         
         
     }
+     
+     public User(int accountNum,String fName, String lName, int age, double weight, double height, String sex, String units, String dob){
+        
+        this.firstName = fName;
+        this.lastName = lName;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.sex = sex;
+        this.units = units;
+        this.accID = accountNum;
+        this.dob = dob;
+        
+        
+    }
     
     public User(){
-        this.firstName = "";
-        this.lastName = "";
-        this.age = 1;
-        this.weight = 1;
-        this.height = 1;
-        this.sex = "male";
-        this.units = "metric";
-        this.accID = 0;
+        
     }
 
     /**
@@ -165,6 +174,20 @@ public class User {
      */
     public void setAccID(int accID) {
         this.accID = accID;
+    }
+
+    /**
+     * @return the dob
+     */
+    public String getDob() {
+        return dob;
+    }
+
+    /**
+     * @param dob the dob to set
+     */
+    public void setDob(String dob) {
+        this.dob = dob;
     }
     
 }

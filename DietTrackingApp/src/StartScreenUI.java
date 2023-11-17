@@ -1,6 +1,8 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.Period;
 import javax.swing.*;
 
 /*
@@ -109,6 +111,11 @@ public class StartScreenUI extends javax.swing.JFrame {
         
         AccountSetUp findAccount = new AccountSetUp();
         localUser = findAccount.getSelectedAccount(selectedValue);
+        
+       AccountSetUp updateAge = new AccountSetUp(localUser);
+       updateAge.UpdateAge();
+       
+       localUser = updateAge.getUser();
         
         AccountHomePageUI home = new AccountHomePageUI(localUser);
         home.HomePageUI(localUser);

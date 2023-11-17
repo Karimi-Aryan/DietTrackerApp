@@ -121,7 +121,7 @@ User user = new User();
 
         SettingsUpdateUI settings = new SettingsUpdateUI();
         settings.SettingsUpdate(this.user);
-        
+        dispose();
 
     }//GEN-LAST:event_settingsChangeBTNActionPerformed
 
@@ -137,6 +137,7 @@ User user = new User();
 
         AccountInfoUpdateUI infoUpdate = new AccountInfoUpdateUI(this.user);
         infoUpdate.InfoUpdate(this.user);
+        dispose();
 
 
 

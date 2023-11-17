@@ -19,7 +19,9 @@ public class SettingsUpdateUI extends javax.swing.JFrame{
     /**
      * Creates new form Settings
      */
-    int accID = 0;
+    
+    private User user;
+    
     public SettingsUpdateUI() {
         initComponents();
      
@@ -27,10 +29,10 @@ public class SettingsUpdateUI extends javax.swing.JFrame{
        
     }
     
-    public SettingsUpdateUI(int accountID) {
+    public SettingsUpdateUI(User localUser) {
         initComponents();
         
-        this.accID = accountID;
+        this.user = localUser;
         
         
        
@@ -116,20 +118,32 @@ public class SettingsUpdateUI extends javax.swing.JFrame{
 
     private void metricUnitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metricUnitbtnActionPerformed
       
-        SettingSetUp settings = new SettingSetUp(this.accID);
+        SettingSetUp settings = new SettingSetUp(this.user);
         settings.MetricSetting();
         
+        this.user.setUnits("Metric");
+        
         dispose();
+        
+        AccountHomePageUI home = new AccountHomePageUI(this.user);
+        home.HomePageUI(this.user);
         
         JOptionPane.showMessageDialog(this, "Your Settings has been updated!");
     }//GEN-LAST:event_metricUnitbtnActionPerformed
 
     private void ImperialBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImperialBTNActionPerformed
 
-        SettingSetUp settings = new SettingSetUp(this.accID);
+        SettingSetUp settings = new SettingSetUp(this.user);
         settings.ImperialSetting();
         
+        this.user.setUnits("Imperial");
+        
         dispose();
+        
+        AccountHomePageUI home = new AccountHomePageUI(this.user);
+        home.HomePageUI(this.user);
+        
+        
         
         JOptionPane.showMessageDialog(this, "Your Settings has been updated!");
 
@@ -141,7 +155,8 @@ public class SettingsUpdateUI extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SettingsUpdateUI(user.getAccID()).setVisible(true);
+                new SettingsUpdateUI(user).setVisible(true);
+                
                 
             }
         });
@@ -175,6 +190,8 @@ public class SettingsUpdateUI extends javax.swing.JFrame{
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SettingsUpdateUI().setVisible(true);
+                
+                
             }
         });
         

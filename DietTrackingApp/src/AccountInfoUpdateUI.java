@@ -33,6 +33,12 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
         editHeight.setText(Double.toString((this.user.getHeight())));
         editWeight.setText(Double.toString(this.user.getWeight()));
         
+        String [] dateSplit = this.user.getDob().split("-");
+        
+        editYear.setText(dateSplit[0]);
+        editMonth.setText(dateSplit[1]);
+        editDay.setText(dateSplit[2]);
+        
     }
 
     /**
@@ -298,63 +304,52 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
         double height = Double.parseDouble(editHeight.getText());
         double weight = Double.parseDouble(editWeight.getText());
         int accID = this.user.getAccID();
+        String dob = editYear.getText()+"-"+editMonth.getText()+"-"+editDay.getText();
+        String units = "";
+        int age = 0;
         
-        LocalDate dob = LocalDate.parse(editYear.getText()+"-"+editMonth.getText()+"-"+editDay.getText());
+        User userErrorCheck = new User(user.getAccID(),firstName, lastName, age, weight, height, sex, units, dob);
+        
+        ErrorHandling_AccountInfo check = new ErrorHandling_AccountInfo(userErrorCheck);
+        
+        try{
+        
+            int errorControl = check.ErrorCheck_AccountInfo();
+            
+            if (errorControl == 1){
+                return;
+            }
+            
+        }catch (Exception e){
+           
+          return;  
+            
+        }
+        
+        String [] monthAndDay = check.DateCleanUp();
+        
+            
+            editMonth.setText(monthAndDay[0]);
+            editDay.setText(monthAndDay[1]);
+        
+        LocalDate dobObj = LocalDate.parse(dob);
         LocalDate currentDate = LocalDate.now();
         
-        Period period = Period.between(dob,currentDate);
+        Period period = Period.between(dobObj,currentDate);
         
-        int age = period.getYears();
+        age = period.getYears();
         
-        AccountSetUp updatedAccount = new AccountSetUp(accID,firstName, lastName, age, weight, height, sex);
+        User updatedUser = new User(accID,firstName, lastName, age, weight, height, sex,this.user.getUnits(), dob);
+        
+        AccountSetUp updatedAccount = new AccountSetUp(accID,firstName, lastName, age, weight, height, sex,this.user.getUnits(), dob);
         updatedAccount.UpdateAccount();
-
-        
-        
-        //sending info to database
-        
-         /* try{
-             
-             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
-           
-            PreparedStatement update = connect.prepareStatement("UPDATE INFO SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ? WHERE AccountID = ?;");
-           
-           
-           update.setString(1,firstName);
-           update.setString(2,lastName);
-           update.setInt(3,age);
-           update.setDouble(4,weight);
-           update.setDouble(5,height);
-           update.setString(6,sex);
-           update.setInt(7,accID);
-           
-
-           update.executeUpdate();
-           
-           System.out.println("We did it!");
-           
-            
-            
-            
-           //my SQL statement 
-            
-           
-           
-           //Executing SQL query "(userFirstName, userLastName,userAge,userWeight,userHeight,userSex)   '"+sex+", '"+height+", '"+weight+", '"+age+"')";
-           
-           
-           
-           
-         }catch (Exception e){
-             System.out.println("We didnt do it....");
-         }
-       
-        */
         
         dispose();
         
         JOptionPane.showMessageDialog(this, "Your Profile has been updated!");
+        
+        AccountHomePageUI home = new AccountHomePageUI(updatedUser);
+        home.HomePageUI(updatedUser);
         
         System.out.println(firstName);
         System.out.println(lastName);

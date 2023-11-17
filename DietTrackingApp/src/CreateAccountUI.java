@@ -259,57 +259,7 @@ public class CreateAccountUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editSexActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:
-        
-        //Error handling 
-        
-        if (editFirstName.getText().length() >45 || editLastName.getText().length() > 45){
-            
-            //show: too many characters for first or last name
-        }
-        
-        
-        if (editWeight.getText().length() >45 || editHeight.getText().length() > 45){
-            
-            //show: number is too high for height or weight 
-        }
-        
-        
-        if(Double.parseDouble(editWeight.getText()) <0 || Double.parseDouble(editHeight.getText()) <0){
-            
-            //show: must pick positive number
-        }
-        
-        if(Integer.parseInt(editYear.getText()) > Year.now().getValue()){
-             
-            //show: must put valid year
-        }
-        
-        if(Integer.parseInt(editMonth.getText())<10 && editMonth.getText().substring(0,1) != "0" ){
-            
-            //add 0 to month number to avoid any date errors 
-            
-            editMonth.setText("0"+editMonth.getText());
-        }
-        
-        if(Integer.parseInt(editDay.getText())<10 && editDay.getText().substring(0,1) != "0" ){
-            
-            //add 0 to day number to avoid any date errors 
-            
-            editDay.setText("0"+editDay.getText());
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+  
         //getting all data inserted from user 
         
         int accountNum = 0;
@@ -318,27 +268,63 @@ public class CreateAccountUI extends javax.swing.JFrame {
         String sex = editSex.getSelectedItem().toString();
         double height = Double.parseDouble(editHeight.getText());
         double weight = Double.parseDouble(editWeight.getText());
+        String dob = editYear.getText()+"-"+editMonth.getText()+"-"+editDay.getText();
+        String units = "Metric";
+        int age =0;
         
-        LocalDate dob = LocalDate.parse(editYear.getText()+"-"+editMonth.getText()+"-"+editDay.getText());
+        
+       
+        //Error handling
+        
+        User userErrorCheck = new User(accountNum,firstName, lastName, age, weight, height, sex, units, dob);
+        
+        ErrorHandling_AccountInfo check = new ErrorHandling_AccountInfo(userErrorCheck);
+        
+        try{
+        
+            int errorControl = check.ErrorCheck_AccountInfo();
+            
+            if (errorControl == 1){
+                return;
+            }
+            
+        }catch (Exception e){
+           
+          return;  
+            
+        }
+        
+        String [] monthAndDay = check.DateCleanUp();
+        
+            
+            editMonth.setText(monthAndDay[0]);
+            editDay.setText(monthAndDay[1]);
+     
+        
+        
+        
+        
+        LocalDate userDob = LocalDate.parse(dob);
         LocalDate currentDate = LocalDate.now();
         
-        Period period = Period.between(dob,currentDate);
+        Period period = Period.between(userDob,currentDate);
         
-        int age = period.getYears();
-        String units = "Metric";
+        age = period.getYears();
         
         
-        //sending info to database
+        //sending info to database to create account
         
-       AccountSetUp newAccount = new AccountSetUp(accountNum,firstName, lastName, age, weight, height, sex, units);
+       AccountSetUp newAccount = new AccountSetUp(accountNum,firstName, lastName, age, weight, height, sex, units,dob);
        newAccount.AddAccount();
         
         
-        User localUser = new User(accountNum,firstName, lastName, age, weight, height, sex, "Metric");
+        User localUser = new User(accountNum,firstName, lastName, age, weight, height, sex, units,dob);
         
         dispose();
         
         JOptionPane.showMessageDialog(this, "Your Profile has been created!");
+        
+        //go to home page
         
         AccountHomePageUI home = new AccountHomePageUI(localUser);
         home.HomePageUI(localUser);

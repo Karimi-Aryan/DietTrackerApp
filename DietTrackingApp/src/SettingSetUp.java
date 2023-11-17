@@ -14,13 +14,14 @@ import java.sql.Statement;
  */
 public class SettingSetUp implements SettingsInterface {
 
-    private int accountID;
+    
+    private final User user;
 
     
     
-    SettingSetUp(int accID) {
+    SettingSetUp(User localUser) {
         
-    this.accountID = accID;
+    this.user = localUser;
 }
 
     @Override
@@ -31,7 +32,7 @@ public class SettingSetUp implements SettingsInterface {
           
             Statement stm = connect.createStatement();
             
-             String sql = "update INFO set userUnits = 'Metric' where AccountID in ("+this.accountID+");";
+             String sql = "update INFO set userUnits = 'Metric' where AccountID in ("+this.user.getAccID()+");";
              stm.executeUpdate(sql);
          
              System.out.println("we did it?");
@@ -51,7 +52,7 @@ public class SettingSetUp implements SettingsInterface {
             
             System.out.println("we connected");
             
-             String sql = "update INFO set userUnits = 'Imperial' where AccountID in ("+this.accountID+");";
+             String sql = "update INFO set userUnits = 'Imperial' where AccountID in ("+this.user.getAccID()+");";
              stm.executeUpdate(sql);
              
              System.out.println("we did it?");

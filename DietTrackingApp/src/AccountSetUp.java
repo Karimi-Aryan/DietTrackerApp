@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 /*
@@ -27,6 +29,8 @@ public class AccountSetUp implements AccountInterface {
     private  double height;
     private  String sex;
     private  String units;
+    private String dob;
+    private User user;
     
     public AccountSetUp(int accNum,String firstName, String lastName, int age,  double weight, double height, String sex, String units) {
         
@@ -55,6 +59,27 @@ public class AccountSetUp implements AccountInterface {
        
        
     }
+    
+    public AccountSetUp(int accNum,String firstName, String lastName, int age,  double weight, double height, String sex, String units, String dob) {
+        
+       this.accountNum = accNum;
+       this.firstName =firstName;
+       this.lastName = lastName;
+       this.age = age;
+       this.weight = weight;
+       this.height = height;
+       this.sex = sex;
+       this.units =  units;
+       this.dob = dob;
+       
+       
+    }
+    
+    public AccountSetUp(User localUser) {
+        this.user = localUser;
+    }
+    
+    
 
     public AccountSetUp() {
         
@@ -110,7 +135,7 @@ public class AccountSetUp implements AccountInterface {
             
             
             //String sqlADD = "INSERT INTO INFO VALUES('4','1','1','1','1','1','1')";
-            String sqlADD = "INSERT INTO INFO VALUES ("+this.accountNum+", '"+this.firstName+"', '"+this.lastName+"', '"+this.age+"','"+this.weight+"','"+this.height+"','"+this.sex+"','Metric')";
+            String sqlADD = "INSERT INTO INFO VALUES ("+this.accountNum+", '"+this.firstName+"', '"+this.lastName+"', '"+this.age+"','"+this.weight+"','"+this.height+"','"+this.sex+"','Metric','"+this.dob+"')";
 
             
             stm.executeUpdate(sqlADD);
@@ -147,7 +172,7 @@ public class AccountSetUp implements AccountInterface {
           Connection connect = sqlConnect.SQLConnect();
             
             
-            PreparedStatement update = connect.prepareStatement("UPDATE INFO SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ? WHERE AccountID = ?;");
+            PreparedStatement update = connect.prepareStatement("UPDATE INFO SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ?, userDOB = ? WHERE AccountID = ?;");
            
            
            update.setString(1,this.firstName);
@@ -157,6 +182,7 @@ public class AccountSetUp implements AccountInterface {
            update.setDouble(5,this.height);
            update.setString(6,this.sex);
            update.setInt(7,this.accountNum);
+           update.setString(8, this.dob);
            
 
            update.executeUpdate();
@@ -259,7 +285,7 @@ public class AccountSetUp implements AccountInterface {
     @Override
     public User getSelectedAccount(int accountId) {
         
-        String query = "SELECT userFirstName, userLastName, userAge, userWeight, userHeight, userSex, userUnits FROM INFO WHERE AccountID = "+accountId+";";
+        String query = "SELECT userFirstName, userLastName, userAge, userWeight, userHeight, userSex, userUnits, userDOB FROM INFO WHERE AccountID = "+accountId+";";
         User accSelect = new User();
           try{
              
@@ -287,6 +313,7 @@ public class AccountSetUp implements AccountInterface {
        this.height = rs.getDouble("userHeight");
        this.sex = rs.getString("userSex");
        this.units =  rs.getString("userUnits");
+       this.dob = rs.getString("userDOB");
        
        System.out.println(this.weight);
        System.out.println(this.units);
@@ -294,13 +321,14 @@ public class AccountSetUp implements AccountInterface {
            
            
             accSelect = new User(this.accountNum,
-       this.firstName =firstName,
-       this.lastName = lastName,
-       this.age = age,
-       this.weight = weight,
-       this.height = height,
-       this.sex = sex,
-       this.units =  units);
+       this.firstName,
+       this.lastName,
+       this.age,
+       this.weight,
+       this.height,
+       this.sex,
+       this.units,
+       this.dob);
            
            
            
@@ -312,6 +340,52 @@ public class AccountSetUp implements AccountInterface {
         return accSelect;
         
         
+    }
+
+    @Override
+    public void UpdateAge() {
+        
+        try{
+             
+              SQLConnection sqlConnect = new SQLConnection();
+              Connection connect = sqlConnect.SQLConnect();
+              
+              PreparedStatement update = connect.prepareStatement("UPDATE INFO SET userAge = ? WHERE AccountID = ?;");
+           
+        
+        LocalDate userDob = LocalDate.parse(this.dob);
+        LocalDate currentDate = LocalDate.now();
+        
+        Period period = Period.between(userDob,currentDate);
+        
+         this.age = period.getYears();
+          
+        
+        update.setInt(1,this.age);
+          
+           
+
+           update.executeUpdate();
+           
+           System.out.println("We did it!");
+           
+            
+           
+           
+           
+         }catch (Exception e){
+             System.out.println("We didnt do it....");
+         }
+       
+
+
+    }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
     }
     
     
