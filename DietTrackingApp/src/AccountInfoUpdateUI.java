@@ -94,10 +94,20 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
                 editHeightActionPerformed(evt);
             }
         });
+        editHeight.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editHeightKeyTyped(evt);
+            }
+        });
 
         editWeight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editWeightActionPerformed(evt);
+            }
+        });
+        editWeight.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editWeightKeyTyped(evt);
             }
         });
 
@@ -106,16 +116,31 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
                 editDayActionPerformed(evt);
             }
         });
+        editDay.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editDayKeyTyped(evt);
+            }
+        });
 
         editMonth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editMonthActionPerformed(evt);
             }
         });
+        editMonth.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editMonthKeyTyped(evt);
+            }
+        });
 
         editYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editYearActionPerformed(evt);
+            }
+        });
+        editYear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editYearKeyTyped(evt);
             }
         });
 
@@ -152,10 +177,20 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
                 editLastNameActionPerformed(evt);
             }
         });
+        editLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editLastNameKeyTyped(evt);
+            }
+        });
 
         editFirstName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editFirstNameActionPerformed(evt);
+            }
+        });
+        editFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editFirstNameKeyTyped(evt);
             }
         });
 
@@ -294,7 +329,23 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editSexActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:
+        
+        //Checking Empty status
+        
+         ErrorHandling_AccountInfo emptyCheck = new ErrorHandling_AccountInfo();
+       
+       
+      if(emptyCheck.EmptyCheck_Name(editFirstName.getText(), editLastName.getText()) == 1) return;
+      if(emptyCheck.EmptyCheck_Units(editWeight.getText(), editHeight.getText()) == 1) return;
+      if(emptyCheck.EmptyCheck_Date(editYear.getText(), editMonth.getText(), editDay.getText()) == 1) return;
+      
+      //clean up date by adding 0 to digits 1-9 for moneth and day
+      
+      String [] dateSplit = emptyCheck.DateCleanUp(editYear.getText(),editMonth.getText(),editDay.getText());
+        
+        
+        
+        
         
         //getting all data inserted from user 
         
@@ -313,11 +364,12 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
         ErrorHandling_AccountInfo check = new ErrorHandling_AccountInfo(userErrorCheck);
         
         try{
-        
+                 
             int errorControl = check.ErrorCheck_AccountInfo();
             
             if (errorControl == 1){
                 return;
+                
             }
             
         }catch (Exception e){
@@ -326,11 +378,10 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
             
         }
         
-        String [] monthAndDay = check.DateCleanUp();
-        
+            editMonth.setText(dateSplit[1]);
+            editDay.setText(dateSplit[2]);
             
-            editMonth.setText(monthAndDay[0]);
-            editDay.setText(monthAndDay[1]);
+        //get age
         
         LocalDate dobObj = LocalDate.parse(dob);
         LocalDate currentDate = LocalDate.now();
@@ -338,6 +389,8 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
         Period period = Period.between(dobObj,currentDate);
         
         age = period.getYears();
+        
+        //update local user and user in database
         
         User updatedUser = new User(accID,firstName, lastName, age, weight, height, sex,this.user.getUnits(), dob);
         
@@ -347,6 +400,8 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
         dispose();
         
         JOptionPane.showMessageDialog(this, "Your Profile has been updated!");
+        
+        //go to home page
         
         AccountHomePageUI home = new AccountHomePageUI(updatedUser);
         home.HomePageUI(updatedUser);
@@ -368,7 +423,70 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
     private void editFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFirstNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editFirstNameActionPerformed
+
+    private void editFirstNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editFirstNameKeyTyped
+        alphaCharInputErrorHandling(evt);
+    }//GEN-LAST:event_editFirstNameKeyTyped
+
+    private void editLastNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editLastNameKeyTyped
+        alphaCharInputErrorHandling(evt);
+    }//GEN-LAST:event_editLastNameKeyTyped
+
+    private void editHeightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editHeightKeyTyped
+        digitDoubleInputErrorHandling(evt);
+    }//GEN-LAST:event_editHeightKeyTyped
+
+    private void editWeightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editWeightKeyTyped
+        digitDoubleInputErrorHandling(evt);
+    }//GEN-LAST:event_editWeightKeyTyped
+
+    private void editYearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editYearKeyTyped
+ digitDoubleInputErrorHandling(evt);
+        
+        if(editYear.getText().length() == 4){
+            evt.consume();
+        }    }//GEN-LAST:event_editYearKeyTyped
+
+    private void editMonthKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editMonthKeyTyped
+         digitDoubleInputErrorHandling(evt);
+        
+        if(editMonth.getText().length() == 2){
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_editMonthKeyTyped
+
+    private void editDayKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editDayKeyTyped
+         digitDoubleInputErrorHandling(evt);
+        
+        if(editDay.getText().length() == 2){
+            evt.consume();
+        }
+    }//GEN-LAST:event_editDayKeyTyped
   
+    
+    
+    private void digitDoubleInputErrorHandling(java.awt.event.KeyEvent evt){
+         char typed = evt.getKeyChar();
+        
+        if(!Character.isDigit(typed)){
+            if(typed == '.'){
+                return;
+            }
+            evt.consume();
+        }
+    }
+    
+    private void alphaCharInputErrorHandling(java.awt.event.KeyEvent evt){
+           char typed = evt.getKeyChar();
+        
+        if(!Character.isAlphabetic(typed)){
+            if(typed == '-'){
+                return;
+            }
+            evt.consume();
+        }
+    }
 
     /**
      * @param args the command line arguments

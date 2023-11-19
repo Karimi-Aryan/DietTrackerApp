@@ -105,7 +105,7 @@ public class StartScreenUI extends javax.swing.JFrame {
     }//GEN-LAST:event_createProfilebtnActionPerformed
 
     private void AccountListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountListActionPerformed
-        // TODO add your handling code here:
+        
         int selectedValue = AccountList.getSelectedIndex()+1;
         User localUser = new User();
         
@@ -155,7 +155,7 @@ public class StartScreenUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new StartScreenUI().setVisible(true);
+                
                 
 
         AccountSetUp getAccounts = new AccountSetUp();
