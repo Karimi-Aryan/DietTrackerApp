@@ -112,6 +112,23 @@ public class ErrorHandling_AccountInfo {
        
    }
    
+   int ErrorCheck_Date(String dob){
+       
+       try {
+            LocalDate userDob = LocalDate.parse(dob);
+            
+        }
+        catch (Exception e){
+            
+            JOptionPane.showMessageDialog(null, "Please put valid date"
+                    , "Invalid Date: ", JOptionPane.ERROR_MESSAGE);
+            return 1;
+            
+            
+        }
+       return 0;
+   }
+   
    String [] DateCleanUp(String year, String month, String day){
        
        String [] monthAndDay = {year,month,day};
@@ -121,15 +138,15 @@ public class ErrorHandling_AccountInfo {
             //add 0 to month number to avoid any date errors
             
             month = "0" + month;
-            monthAndDay[1] = this.month;
+            monthAndDay[1] = month;
             
         }
         
-        if(Integer.parseInt(this.day)<10 && !"0".equals(this.day.substring(0,1)) ){
+        if(Integer.parseInt(day)<10 && !"0".equals(day.substring(0,1)) ){
             
             //add 0 to day number to avoid any date errors 
-            this.day = "0" + this.day;
-            monthAndDay[2] = this.day;
+            day = "0" + day;
+            monthAndDay[2] = day;
             
         }
         

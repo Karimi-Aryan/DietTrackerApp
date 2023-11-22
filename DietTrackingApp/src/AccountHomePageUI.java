@@ -36,6 +36,7 @@ User user = new User();
         exerciseLoggingBTN = new javax.swing.JButton();
         calorieIntakeGraphBTN = new javax.swing.JButton();
         bmrCalcBTN = new javax.swing.JButton();
+        FatLossBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,19 +82,28 @@ User user = new User();
             }
         });
 
+        FatLossBTN.setText("Fat Loss Calculator");
+        FatLossBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FatLossBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(118, 118, 118)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(calorieIntakeGraphBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(exerciseLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mealLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(settingsChangeBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AccountInfoUpdateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bmrCalcBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FatLossBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(calorieIntakeGraphBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exerciseLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mealLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(settingsChangeBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AccountInfoUpdateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bmrCalcBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -111,7 +121,9 @@ User user = new User();
                 .addComponent(calorieIntakeGraphBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bmrCalcBTN)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FatLossBTN)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,6 +168,12 @@ User user = new User();
         // TODO add your handling code here:
     }//GEN-LAST:event_calorieIntakeGraphBTNActionPerformed
 
+    private void FatLossBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FatLossBTNActionPerformed
+FatLossCalcUI fatLossCalc = new FatLossCalcUI();
+fatLossCalc.FatLossCalc(this.user); 
+dispose();
+    }//GEN-LAST:event_FatLossBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -194,6 +212,7 @@ User user = new User();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccountInfoUpdateBTN;
+    private javax.swing.JButton FatLossBTN;
     private javax.swing.JButton bmrCalcBTN;
     private javax.swing.JButton calorieIntakeGraphBTN;
     private javax.swing.JButton exerciseLoggingBTN;

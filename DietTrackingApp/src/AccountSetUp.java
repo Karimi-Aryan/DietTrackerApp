@@ -374,7 +374,9 @@ public class AccountSetUp implements AccountInterface {
            
            
          }catch (Exception e){
-             System.out.println("We didnt do it....");
+             System.out.println("We didnt do it....go fix AccountSetUp updateAge()");
+              System.out.println(this.age);
+             
          }
        
 

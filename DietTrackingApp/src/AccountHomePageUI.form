@@ -23,15 +23,18 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="calorieIntakeGraphBTN" max="32767" attributes="0"/>
-                  <Component id="exerciseLoggingBTN" alignment="0" max="32767" attributes="0"/>
-                  <Component id="mealLoggingBTN" alignment="0" max="32767" attributes="0"/>
-                  <Component id="settingsChangeBTN" alignment="0" max="32767" attributes="0"/>
-                  <Component id="AccountInfoUpdateBTN" alignment="0" max="32767" attributes="0"/>
-                  <Component id="bmrCalcBTN" min="-2" pref="149" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="FatLossBTN" min="-2" pref="149" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="calorieIntakeGraphBTN" max="32767" attributes="0"/>
+                      <Component id="exerciseLoggingBTN" alignment="0" max="32767" attributes="0"/>
+                      <Component id="mealLoggingBTN" alignment="0" max="32767" attributes="0"/>
+                      <Component id="settingsChangeBTN" alignment="0" max="32767" attributes="0"/>
+                      <Component id="AccountInfoUpdateBTN" alignment="0" max="32767" attributes="0"/>
+                      <Component id="bmrCalcBTN" min="-2" pref="149" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="133" max="32767" attributes="0"/>
           </Group>
@@ -52,7 +55,9 @@
               <Component id="calorieIntakeGraphBTN" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="bmrCalcBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="66" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="FatLossBTN" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,6 +109,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bmrCalcBTNActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="FatLossBTN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fat Loss Calculator"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FatLossBTNActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
