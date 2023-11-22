@@ -103,8 +103,8 @@ public class AccountSetUp implements AccountInterface {
            //check what id is the last one
            
            
-           String sql2 = "SELECT AccountID FROM INFO";
-           String sql3 = "SELECT Max(AccountID) FROM INFO";
+           String sql2 = "SELECT AccountID FROM account_info";
+           String sql3 = "SELECT Max(AccountID) FROM account_info";
            
            
             
@@ -135,7 +135,7 @@ public class AccountSetUp implements AccountInterface {
             
             
             //String sqlADD = "INSERT INTO INFO VALUES('4','1','1','1','1','1','1')";
-            String sqlADD = "INSERT INTO INFO VALUES ("+this.accountNum+", '"+this.firstName+"', '"+this.lastName+"', '"+this.age+"','"+this.weight+"','"+this.height+"','"+this.sex+"','Metric','"+this.dob+"')";
+            String sqlADD = "INSERT INTO account_info VALUES ("+this.accountNum+", '"+this.firstName+"', '"+this.lastName+"', '"+this.age+"','"+this.weight+"','"+this.height+"','"+this.sex+"','Metric','"+this.dob+"')";
 
             
             stm.executeUpdate(sqlADD);
@@ -172,7 +172,7 @@ public class AccountSetUp implements AccountInterface {
           Connection connect = sqlConnect.SQLConnect();
             
             
-            PreparedStatement update = connect.prepareStatement("UPDATE INFO SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ?, userDOB = ? WHERE AccountID = ?;");
+            PreparedStatement update = connect.prepareStatement("UPDATE account_info SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ?, userDOB = ? WHERE AccountID = ?;");
            
            
            update.setString(1,this.firstName);
@@ -203,7 +203,7 @@ public class AccountSetUp implements AccountInterface {
     @Override
     public String [] GetAllAccounts() {
         
-        String QUERY = "SELECT AccountID, userFirstName FROM INFO";
+        String QUERY = "SELECT AccountID, userFirstName FROM account_info";
         
         String [] accountList = new String[10];
          
@@ -220,8 +220,8 @@ public class AccountSetUp implements AccountInterface {
             
             //find max number of accounts 
             
-           String sql2 = "SELECT AccountID FROM INFO";
-           String sql3 = "SELECT Max(AccountID) FROM INFO";
+           String sql2 = "SELECT AccountID FROM account_info";
+           String sql3 = "SELECT Max(AccountID) FROM account_info";
            
            
             
@@ -285,7 +285,7 @@ public class AccountSetUp implements AccountInterface {
     @Override
     public User getSelectedAccount(int accountId) {
         
-        String query = "SELECT userFirstName, userLastName, userAge, userWeight, userHeight, userSex, userUnits, userDOB FROM INFO WHERE AccountID = "+accountId+";";
+        String query = "SELECT userFirstName, userLastName, userAge, userWeight, userHeight, userSex, userUnits, userDOB FROM account_info WHERE AccountID = "+accountId+";";
         User accSelect = new User();
           try{
              
@@ -350,7 +350,7 @@ public class AccountSetUp implements AccountInterface {
               SQLConnection sqlConnect = new SQLConnection();
               Connection connect = sqlConnect.SQLConnect();
               
-              PreparedStatement update = connect.prepareStatement("UPDATE INFO SET userAge = ? WHERE AccountID = ?;");
+              PreparedStatement update = connect.prepareStatement("UPDATE account_info SET userAge = ? WHERE AccountID = ?;");
            
         
         LocalDate userDob = LocalDate.parse(this.dob);
