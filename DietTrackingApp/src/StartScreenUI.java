@@ -59,6 +59,7 @@ public class StartScreenUI extends javax.swing.JFrame {
         jLabel1.setText("Choose Profile");
 
         AccountList.setModel(new DefaultComboBoxModel<>(this.accountList));
+        AccountList.setPreferredSize(new Dimension(150, 20)); // Set the new width here
         AccountList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AccountListActionPerformed(evt);

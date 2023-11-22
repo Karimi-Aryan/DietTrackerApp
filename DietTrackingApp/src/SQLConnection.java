@@ -26,7 +26,7 @@ public class SQLConnection implements ConnectionInterface {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-             connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","Uncharted4ever");
+             connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountInfo","root","password");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SQLConnection.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
