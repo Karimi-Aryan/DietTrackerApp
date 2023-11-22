@@ -9,15 +9,15 @@
  */
 public class User {
 
-    private  String firstName;
-    private  String lastName;
-    private  int age;
-    private  double weight;
-    private  double height;
-    private  String sex;
-    private  String units;
-    private int accID;
-    private String dob;
+    protected  String firstName;
+    protected  String lastName;
+    protected  int age;
+    protected  double weight;
+    protected double height;
+    protected String sex;
+    protected String units;
+    protected int accID;
+    protected String dob;
     
     public User(int accountNum,String fName, String lName, int age, double weight, double height, String sex, String units){
         
