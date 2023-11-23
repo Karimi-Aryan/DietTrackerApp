@@ -48,7 +48,7 @@ User user = new User();
         bmrCalcBTN = new javax.swing.JButton();
         FatLossBTN = new javax.swing.JButton();
         LogOutBTN = new javax.swing.JButton();
-
+        visualizeAvgPlateBTN = new javax.swing.JButton();	
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         AccountInfoUpdateBTN.setText("Account Info");
@@ -99,7 +99,15 @@ User user = new User();
                 FatLossBTNActionPerformed(evt);
             }
         });
-
+        
+        visualizeAvgPlateBTN.setText("Visualize Average Plate");	
+        visualizeAvgPlateBTN.addActionListener(new java.awt.event.ActionListener() {	
+            public void actionPerformed(java.awt.event.ActionEvent evt) {	
+            	visualizeAvgPlateBTNActionPerformed(evt);	
+            	
+            }
+        });
+        
         LogOutBTN.setText("Log Out");
         LogOutBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +130,7 @@ User user = new User();
                         .addComponent(mealLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(settingsChangeBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(AccountInfoUpdateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(visualizeAvgPlateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)	
                         .addComponent(bmrCalcBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
@@ -143,6 +152,8 @@ User user = new User();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FatLossBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(visualizeAvgPlateBTN)	
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)	
                 .addComponent(LogOutBTN)
                 .addContainerGap(8, Short.MAX_VALUE))
         );
@@ -208,9 +219,9 @@ User user = new User();
     }//GEN-LAST:event_calorieIntakeGraphBTNActionPerformed
 
     private void FatLossBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FatLossBTNActionPerformed
-FatLossCalcUI fatLossCalc = new FatLossCalcUI();
-fatLossCalc.FatLossCalc(this.user); 
-dispose();
+    	FatLossCalcUI fatLossCalc = new FatLossCalcUI();
+    	fatLossCalc.FatLossCalc(this.user); 
+    	dispose();
     }//GEN-LAST:event_FatLossBTNActionPerformed
 
     private void LogOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBTNActionPerformed
@@ -261,5 +272,6 @@ dispose();
     private javax.swing.JButton exerciseLoggingBTN;
     private javax.swing.JButton mealLoggingBTN;
     private javax.swing.JButton settingsChangeBTN;
+    private javax.swing.JButton visualizeAvgPlateBTN;	
     // End of variables declaration//GEN-END:variables
 }
