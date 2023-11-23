@@ -1,5 +1,3 @@
-
-
 import java.awt.event.ActionEvent;
 
 
@@ -140,29 +138,29 @@ public void actionPerformed(ActionEvent e){
 			 intensityLevel = intensityType.getSelectedItem().toString();
 			 exerciseActivity = typesExercises.getSelectedItem().toString();
 			 
-			 System.out.println("\nDATE: "+fromY+"/"+fromM+"/"+fromD+" duration: "+durationbyHour+" intensity: "
-			 +intensityLevel+" exercise: "+exerciseActivity);
-			 System.out.println("name: "+user.getFirstName()+"sex: "+user.getSex());
-			 
 			 String strDate;
-			 
-			 if(fYear.getText().length() == 4 && fMonth.getText().length() <= 2 && fDate.getText().length() <= 2) {
-				 if(fromM <= 12 && fromD <=31 && durationbyHour < 24) {
-					 System.out.println("Date is formatted properly");
-				      
-					 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");      
-					 strDate = fDate.getText()+"-"+fMonth.getText()+"-"+fYear.getText();
-					 Date date = new Date();
-					 date = formatter.parse(strDate);
-					 ExerciseUser Euser = new ExerciseUser(user, date, durationbyHour, exerciseActivity, intensityLevel);
-					 Euser.insertExerciseData();
-					 System.out.println(date);
-					 
-					 JOptionPane.showMessageDialog(this, "Your exercise log was recorded!");
-					 dispose();
-					 AccountHomePageUI a = new AccountHomePageUI(this.user);
-					 frame.dispose();
-					 a.setVisible(true); 
+			 if(fromY > 0 && fromM > 0 && fromD > 0 && durationbyHour > 0) {				 
+				 if(fYear.getText().length() == 4 && fMonth.getText().length() <= 2 && fDate.getText().length() <= 2) {
+					 if(fromM <= 12 && fromD <=31 && durationbyHour < 24) {				      
+						 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");      
+						 strDate = fDate.getText()+"-"+fMonth.getText()+"-"+fYear.getText();
+						 Date date = new Date();
+						 date = formatter.parse(strDate);
+						 ExerciseUser Euser = new ExerciseUser(user, date, durationbyHour, exerciseActivity, intensityLevel);
+						 Euser.insertExerciseData();
+						 
+						 JOptionPane.showMessageDialog(this, "Your exercise log was recorded!");
+						 dispose();
+						 AccountHomePageUI a = new AccountHomePageUI(this.user);
+						 frame.dispose();
+						 a.setVisible(true); 
+					 }
+					 else {
+						 JOptionPane.showMessageDialog(null, "Please retry", "alert", JOptionPane.ERROR_MESSAGE);
+					 }
+				 }
+				 else {
+					 JOptionPane.showMessageDialog(null, "Please retry", "alert", JOptionPane.ERROR_MESSAGE);
 				 }
 			 }
 			 else {
