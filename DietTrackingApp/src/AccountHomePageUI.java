@@ -47,8 +47,8 @@ User user = new User();
         calorieIntakeGraphBTN = new javax.swing.JButton();
         bmrCalcBTN = new javax.swing.JButton();
         FatLossBTN = new javax.swing.JButton();
-        visualizeAvgPlateBTN = new javax.swing.JButton();
-        
+        jButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         AccountInfoUpdateBTN.setText("Account Info");
@@ -99,11 +99,11 @@ User user = new User();
                 FatLossBTNActionPerformed(evt);
             }
         });
-        
-        visualizeAvgPlateBTN.setText("Visualize Average Plate");
-        visualizeAvgPlateBTN.addActionListener(new java.awt.event.ActionListener() {
+
+        jButton1.setText("Log Out");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	visualizeAvgPlateBTNActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -114,6 +114,7 @@ User user = new User();
             .addGroup(layout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FatLossBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(calorieIntakeGraphBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -121,7 +122,6 @@ User user = new User();
                         .addComponent(mealLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(settingsChangeBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(AccountInfoUpdateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(visualizeAvgPlateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bmrCalcBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
@@ -139,12 +139,12 @@ User user = new User();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(calorieIntakeGraphBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(visualizeAvgPlateBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bmrCalcBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FatLossBTN)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,6 +212,10 @@ fatLossCalc.FatLossCalc(this.user);
 dispose();
     }//GEN-LAST:event_FatLossBTNActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,8 +258,8 @@ dispose();
     private javax.swing.JButton bmrCalcBTN;
     private javax.swing.JButton calorieIntakeGraphBTN;
     private javax.swing.JButton exerciseLoggingBTN;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton mealLoggingBTN;
     private javax.swing.JButton settingsChangeBTN;
-    private javax.swing.JButton visualizeAvgPlateBTN;
     // End of variables declaration//GEN-END:variables
 }
