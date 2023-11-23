@@ -276,8 +276,14 @@ public class FatLossCalcUI extends javax.swing.JFrame {
     private void OKbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKbtnActionPerformed
         
        ErrorHandling_AccountInfo dateCheck = new ErrorHandling_AccountInfo();
-       if(dateCheck.EmptyCheck_Date(editYear.getText(), editMonth.getText(), editDay.getText()) == 1) return;
+      
+       //Error check and clean up 
+       
        String [] dateSplit = dateCheck.DateCleanUp(editYear.getText(),editMonth.getText(),editDay.getText());
+       if(dateCheck.EmptyCheck_Date(editYear.getText(), editMonth.getText(), editDay.getText()) == 1) return;
+ 
+       //Date check for the future
+       
        String date = dateSplit[0] +"-"+ dateSplit[1]+"-"+ dateSplit[2];
        if(dateCheck.ErrorCheck_Date(date) == 1) return;
        

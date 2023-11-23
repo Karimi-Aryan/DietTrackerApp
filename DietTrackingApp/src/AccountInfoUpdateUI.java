@@ -74,6 +74,7 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
         editFirstName = new javax.swing.JTextField();
         heightUnitLabel = new javax.swing.JLabel();
         WeightUnitLabel = new javax.swing.JLabel();
+        BackBTN = new javax.swing.JButton();
 
         jCheckBox2.setText("jCheckBox2");
 
@@ -207,6 +208,13 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
             WeightUnitLabel.setText("pounds");
         }
 
+        BackBTN.setText("Back");
+        BackBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -216,9 +224,6 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(saveBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +260,12 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editDay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(editDay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(saveBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BackBTN)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -297,7 +307,9 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
                     .addComponent(editMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(saveBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn)
+                    .addComponent(BackBTN))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -330,22 +342,27 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         
-        //Checking Empty status
+        
+
+
+        //Check Errors for inputs
         
          ErrorHandling_AccountInfo emptyCheck = new ErrorHandling_AccountInfo();
+         
+         //clean up date by adding 0 to digits 1-9 for moneth and day
+      
+      String [] dateSplit = emptyCheck.DateCleanUp(editYear.getText(),editMonth.getText(),editDay.getText());
+      
+      editMonth.setText(dateSplit[1]);
+      editDay.setText(dateSplit[2]);
        
+      //Checking Empty status
        
       if(emptyCheck.EmptyCheck_Name(editFirstName.getText(), editLastName.getText()) == 1) return;
       if(emptyCheck.EmptyCheck_Units(editWeight.getText(), editHeight.getText()) == 1) return;
       if(emptyCheck.EmptyCheck_Date(editYear.getText(), editMonth.getText(), editDay.getText()) == 1) return;
       
-      //clean up date by adding 0 to digits 1-9 for moneth and day
-      
-      String [] dateSplit = emptyCheck.DateCleanUp(editYear.getText(),editMonth.getText(),editDay.getText());
-        
-        
-        
-        
+
         
         //getting all data inserted from user 
         
@@ -463,6 +480,15 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_editDayKeyTyped
+
+    private void BackBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBTNActionPerformed
+        
+        AccountHomePageUI home = new AccountHomePageUI();
+        home.HomePageUI(this.user);
+        dispose();
+        
+        
+    }//GEN-LAST:event_BackBTNActionPerformed
   
     
     
@@ -526,6 +552,7 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackBTN;
     private javax.swing.JLabel WeightUnitLabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
