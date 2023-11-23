@@ -44,13 +44,6 @@ public class MainClass {
         
         
         
-       //meal Logging module 
-        UserInterface userInterface = new UserInterface();
-      MealLogger mealLogger = new MealLogger();
-      String userInput = userInterface.getUserInput();
-      mealLogger.logMeal(userInput);
-      userInterface.closeConnections();
-      mealLogger.closeConnections();
-    
+       
 }
 }
