@@ -12,10 +12,6 @@ public class DietDataService {
         this.AccountID = AccountID;
     }
 
-    public void testFunction() {
-    	System.out.println("test");
-    }
-    
     public JFreeChart generateAveragePlate() {
         DietDataRepository dietDataRepository = new DietDataRepository();
         List<DietData> dietDataList = dietDataRepository.findByAccountID(this.AccountID);
@@ -28,4 +24,3 @@ public class DietDataService {
         return ChartFactory.createPieChart("User's Average Plate", dataset, true, true, false);
     }
 }
-
