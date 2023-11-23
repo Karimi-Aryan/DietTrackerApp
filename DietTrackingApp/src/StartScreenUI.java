@@ -128,6 +128,8 @@ public class StartScreenUI extends javax.swing.JFrame {
         AccountHomePageUI home = new AccountHomePageUI(localUser);
         home.HomePageUI(localUser);
         
+        dispose();
+        
       
        
     }//GEN-LAST:event_AccountListActionPerformed

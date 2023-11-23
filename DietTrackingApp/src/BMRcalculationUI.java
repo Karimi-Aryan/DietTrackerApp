@@ -30,7 +30,7 @@ public class BMRcalculationUI extends javax.swing.JFrame {
     
     public BMRcalculationUI(User localUser) {
        initComponents();
-        
+       this.user = localUser;
        this.weight = localUser.getWeight();
        this.height = localUser.getHeight();
        this.sex = localUser.getSex();
