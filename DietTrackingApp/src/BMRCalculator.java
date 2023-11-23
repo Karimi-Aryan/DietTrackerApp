@@ -7,7 +7,7 @@
  *
  * @author aryankarimi
  */
-public class BMRCalculator implements BMRInterface {
+public class BMRCalculator implements CalculatorInterface {
     
     double bmrFinal= 0;
     

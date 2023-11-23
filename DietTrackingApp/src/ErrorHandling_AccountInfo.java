@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author aryankarimi
  */
-public class ErrorHandling_AccountInfo {
+public class ErrorHandling_AccountInfo implements ErrorInterface {
 
     private User user;
     private String year;
@@ -30,7 +30,7 @@ public class ErrorHandling_AccountInfo {
     
 }
    
-   int ErrorCheck_AccountInfo(){
+   public int ErrorCheck_AccountInfo(){
        
      
       if (this.user.getFirstName().length() >45 || this.user.getLastName().length() > 45){
@@ -112,7 +112,8 @@ public class ErrorHandling_AccountInfo {
        
    }
    
-   int ErrorCheck_Date(String dob){
+    @Override
+   public int ErrorCheck_Date(String dob){
        
        try {
             LocalDate userDob = LocalDate.parse(dob);
@@ -129,7 +130,8 @@ public class ErrorHandling_AccountInfo {
        return 0;
    }
    
-   String [] DateCleanUp(String year, String month, String day){
+    @Override
+   public String [] DateCleanUp(String year, String month, String day){
        
        String [] monthAndDay = {year,month,day};
        
@@ -153,7 +155,7 @@ public class ErrorHandling_AccountInfo {
         return monthAndDay;
    }
    
-   int EmptyCheck_Date(String year, String month, String day){
+   public int EmptyCheck_Date(String year, String month, String day){
        if (year.length() <4 || month.length()<2 || day.length() <2){
            
            JOptionPane.showMessageDialog(null, "Please put a valid date"
@@ -163,7 +165,7 @@ public class ErrorHandling_AccountInfo {
        return 0;
    }
    
-   int EmptyCheck_Name(String fname, String lname){
+   public int EmptyCheck_Name(String fname, String lname){
        if (fname.equals("") || lname.equals("")){
            JOptionPane.showMessageDialog(null, "Please complete first and last name fields"
                     , "Incomplete First or Last Name: ", JOptionPane.ERROR_MESSAGE);
@@ -175,7 +177,7 @@ public class ErrorHandling_AccountInfo {
          return 0;  
    }
    
-   int EmptyCheck_Units(String weight, String height){
+   public int EmptyCheck_Units(String weight, String height){
        
        if (weight.equals("") || height.equals("") ){
            JOptionPane.showMessageDialog(null, "Please complete weight and height fields"

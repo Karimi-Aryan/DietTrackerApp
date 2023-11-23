@@ -9,13 +9,15 @@
  *
  * @author aryankarimi
  */
-public interface BMRInterface {
+public interface CalculatorInterface {
     
     
     
     
 
-    int BMRCalc(double height, double weight, int age, String sex, String units);
+     int BMRCalc(double height, double weight, int age, String sex, String units);
+
+     
     
 }
 
