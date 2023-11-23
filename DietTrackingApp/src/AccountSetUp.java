@@ -31,6 +31,7 @@ public class AccountSetUp implements AccountInterface {
     private  String units;
     private String dob;
     private User user;
+    private String accInfo_Table = "account_info";
     
     public AccountSetUp(int accNum,String firstName, String lastName, int age,  double weight, double height, String sex, String units) {
         
@@ -77,6 +78,7 @@ public class AccountSetUp implements AccountInterface {
     
     public AccountSetUp(User localUser) {
         this.user = localUser;
+        
     }
     
     
@@ -103,8 +105,8 @@ public class AccountSetUp implements AccountInterface {
            //check what id is the last one
            
            
-           String sql2 = "SELECT AccountID FROM account_info";
-           String sql3 = "SELECT Max(AccountID) FROM account_info";
+           String sql2 = "SELECT AccountID FROM "+accInfo_Table+"";
+           String sql3 = "SELECT Max(AccountID) FROM "+accInfo_Table+"";
            
            
             
@@ -128,14 +130,14 @@ public class AccountSetUp implements AccountInterface {
                 
                 this.accountNum = 1;
                 
-                System.out.println("no profile");
+                
             }
             
             
             
             
             //String sqlADD = "INSERT INTO INFO VALUES('4','1','1','1','1','1','1')";
-            String sqlADD = "INSERT INTO account_info VALUES ("+this.accountNum+", '"+this.firstName+"', '"+this.lastName+"', '"+this.age+"','"+this.weight+"','"+this.height+"','"+this.sex+"','Metric','"+this.dob+"')";
+            String sqlADD = "INSERT INTO "+accInfo_Table+" VALUES ("+this.accountNum+", '"+this.firstName+"', '"+this.lastName+"', '"+this.age+"','"+this.weight+"','"+this.height+"','"+this.sex+"','Metric','"+this.dob+"')";
 
             
             stm.executeUpdate(sqlADD);
@@ -172,7 +174,7 @@ public class AccountSetUp implements AccountInterface {
           Connection connect = sqlConnect.SQLConnect();
             
             
-            PreparedStatement update = connect.prepareStatement("UPDATE account_info SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ?, userDOB = ? WHERE AccountID = ?;");
+            PreparedStatement update = connect.prepareStatement("UPDATE "+accInfo_Table+" SET userFirstName = ?, userLastName = ?, userAge = ?, userWeight = ?, userHeight = ?, userSex = ?, userDOB = ? WHERE AccountID = ?;");
            
            
            update.setString(1,this.firstName);
@@ -187,7 +189,7 @@ public class AccountSetUp implements AccountInterface {
 
            update.executeUpdate();
            
-           System.out.println("We did it!");
+           
            
             
            
@@ -203,7 +205,7 @@ public class AccountSetUp implements AccountInterface {
     @Override
     public String [] GetAllAccounts() {
         
-        String QUERY = "SELECT AccountID, userFirstName FROM account_info";
+        String QUERY = "SELECT AccountID, userFirstName FROM "+accInfo_Table+"";
         
         String [] accountList = new String[10];
          
@@ -220,32 +222,31 @@ public class AccountSetUp implements AccountInterface {
             
             //find max number of accounts 
             
-           String sql2 = "SELECT AccountID FROM account_info";
-           String sql3 = "SELECT Max(AccountID) FROM account_info";
+           String sql2 = "SELECT AccountID FROM "+accInfo_Table+"";
+           String sql3 = "SELECT Max(AccountID) FROM "+accInfo_Table+"";
            
            
             
             ResultSet rs = stm.executeQuery(sql2);
             
-            System.out.println("passed lvl1");
+            
             
             if(rs.next()){
                 
                 //if we have an account, find the max ID
-                System.out.println("passed lvl2");
+               
                 
                 ResultSet rs1Max = stm.executeQuery(sql3);
                 rs1Max.next();
                 this.accountNum = rs1Max.getInt("Max(AccountID)");
-                System.out.println("passed lvl3");
-                System.out.println(this.accountNum);
+               
                 
                 
                 
 
             } else {
                 //if no previous account, we will return no accounts
-                System.out.println("weird");
+                
                 this.accountNum = 0;
                 
                 return accountList;
@@ -261,8 +262,7 @@ public class AccountSetUp implements AccountInterface {
             for(int i=0;i<this.accountNum;i++){
             //Display values
             rsGet.next();
-            System.out.println("ID: " + rsGet.getInt("AccountID"));
-            System.out.println(rsGet.getString("userFirstName"));
+           
             accountList[i] = rsGet.getString("userFirstName");
             
             }
@@ -285,7 +285,7 @@ public class AccountSetUp implements AccountInterface {
     @Override
     public User getSelectedAccount(int accountId) {
         
-        String query = "SELECT userFirstName, userLastName, userAge, userWeight, userHeight, userSex, userUnits, userDOB FROM account_info WHERE AccountID = "+accountId+";";
+        String query = "SELECT userFirstName, userLastName, userAge, userWeight, userHeight, userSex, userUnits, userDOB FROM "+accInfo_Table+" WHERE AccountID = "+accountId+";";
         User accSelect = new User();
           try{
              
@@ -315,8 +315,8 @@ public class AccountSetUp implements AccountInterface {
        this.units =  rs.getString("userUnits");
        this.dob = rs.getString("userDOB");
        
-       System.out.println(this.weight);
-       System.out.println(this.units);
+
+       
        
            
            
@@ -333,8 +333,8 @@ public class AccountSetUp implements AccountInterface {
            
            
          }catch (Exception e){
-             System.out.println("We didnt do it bb....");
              
+            System.out.println("something went wrong"); 
          }
         
         return accSelect;
@@ -350,24 +350,28 @@ public class AccountSetUp implements AccountInterface {
               SQLConnection sqlConnect = new SQLConnection();
               Connection connect = sqlConnect.SQLConnect();
               
-              PreparedStatement update = connect.prepareStatement("UPDATE account_info SET userAge = ? WHERE AccountID = ?;");
-           
+              PreparedStatement update = connect.prepareStatement("UPDATE "+accInfo_Table+" SET userAge = ? WHERE AccountID = ?;");
+       
         
-        LocalDate userDob = LocalDate.parse(this.dob);
+        LocalDate userDob = LocalDate.parse(this.user.dob);
+        
+         
         LocalDate currentDate = LocalDate.now();
-        
+         
         Period period = Period.between(userDob,currentDate);
-        
-         this.age = period.getYears();
+         
+         this.user.setAge(period.getYears());
+          
           
         
-        update.setInt(1,this.age);
+        update.setInt(1,this.user.getAge());
+        update.setInt(2, this.user.getAccID());
           
            
 
            update.executeUpdate();
            
-           System.out.println("We did it!");
+          
            
             
            

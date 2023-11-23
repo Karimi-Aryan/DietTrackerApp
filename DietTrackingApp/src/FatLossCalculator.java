@@ -12,7 +12,7 @@ import java.sql.Statement;
  *
  * @author aryankarimi
  */
-public class FatLossCalculator implements CalorieCounter{
+public class FatLossCalculator{
     
     int numEntries;
     int totalCals_BiWeekly;
