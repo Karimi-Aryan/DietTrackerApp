@@ -187,5 +187,27 @@ public class ErrorHandling_AccountInfo implements ErrorInterface {
        }
        return 0;
    }
+   
+   public void digitDoubleInputErrorHandling(java.awt.event.KeyEvent evt){
+         char typed = evt.getKeyChar();
+        
+        if(!Character.isDigit(typed)){
+            if(typed == '.'){
+                return;
+            }
+            evt.consume();
+        }
+    }
+    
+    public void alphaCharInputErrorHandling(java.awt.event.KeyEvent evt){
+           char typed = evt.getKeyChar();
+        
+        if(!Character.isAlphabetic(typed)){
+            if(typed == '-'){
+                return;
+            }
+            evt.consume();
+        }
+    }
     
 }

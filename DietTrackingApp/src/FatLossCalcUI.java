@@ -30,7 +30,7 @@ public class FatLossCalcUI extends javax.swing.JFrame {
         this.user = user;
         this.newCalc = new FatLossCalculator();
         this.avgCalsBurned = newCalc.getBiWeeklyCalsBurned_Avg(user.getAccID());
-        this.avgCalsConsumed = newCalc.getDailyColoric_Avg(user.getAccID());
+        this.avgCalsConsumed = newCalc.getDailyCaloric_Avg(user.getAccID());
         initComponents();
     }
     public FatLossCalcUI() {

@@ -12,7 +12,7 @@ import java.sql.Statement;
  *
  * @author aryankarimi
  */
-public class FatLossCalculator implements CalculatorInterface {
+public class FatLossCalculator implements CalorieCounter{
     
     int numEntries;
     int totalCals_BiWeekly;
@@ -44,7 +44,7 @@ public class FatLossCalculator implements CalculatorInterface {
         this.bmr = userBmr.BMRCalc(height, weight, age, sex, units);
      }
     
-    public int getDailyColoric_Avg(int accID){
+    public int getDailyCaloric_Avg(int accID){
         
         
         try{
@@ -128,11 +128,7 @@ public class FatLossCalculator implements CalculatorInterface {
         return avg_Cals_Burned;
     }
 
-    @Override
-    public int BMRCalc(double height, double weight, int age, String sex, String units) {
-        BMRCalculator userBmr  = new BMRCalculator();
-        this.bmr = userBmr.BMRCalc(height, weight, age, sex, units);
-    }
+   
 
     
 }

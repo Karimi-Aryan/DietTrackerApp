@@ -200,11 +200,11 @@ User user = new User();
     }
     
     private void exerciseLoggingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exerciseLoggingBTNActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_exerciseLoggingBTNActionPerformed
 
     private void calorieIntakeGraphBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calorieIntakeGraphBTNActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_calorieIntakeGraphBTNActionPerformed
 
     private void FatLossBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FatLossBTNActionPerformed
@@ -214,19 +214,17 @@ dispose();
     }//GEN-LAST:event_FatLossBTNActionPerformed
 
     private void LogOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBTNActionPerformed
+       String[] args = {""};
+       StartScreenUI.main(args);
        dispose();
-        
     }//GEN-LAST:event_LogOutBTNActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public void HomePageUI(User user) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+       
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

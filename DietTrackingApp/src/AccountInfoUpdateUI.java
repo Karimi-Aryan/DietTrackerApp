@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 public class AccountInfoUpdateUI extends javax.swing.JFrame {
 
     private User user;
+    private ErrorHandling_AccountInfo errorCheck;
 
     /**
      * Creates new form AccountSettings
@@ -27,6 +28,7 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
     public AccountInfoUpdateUI(User localUser) {
         
         this.user = localUser; 
+        this.errorCheck = new ErrorHandling_AccountInfo();
         initComponents();
         editFirstName.setText(this.user.getFirstName());
         editLastName.setText(this.user.getLastName());
@@ -442,30 +444,30 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editFirstNameActionPerformed
 
     private void editFirstNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editFirstNameKeyTyped
-        alphaCharInputErrorHandling(evt);
+       this.errorCheck.alphaCharInputErrorHandling(evt);
     }//GEN-LAST:event_editFirstNameKeyTyped
 
     private void editLastNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editLastNameKeyTyped
-        alphaCharInputErrorHandling(evt);
+        this.errorCheck.alphaCharInputErrorHandling(evt);
     }//GEN-LAST:event_editLastNameKeyTyped
 
     private void editHeightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editHeightKeyTyped
-        digitDoubleInputErrorHandling(evt);
+       this.errorCheck.digitDoubleInputErrorHandling(evt);
     }//GEN-LAST:event_editHeightKeyTyped
 
     private void editWeightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editWeightKeyTyped
-        digitDoubleInputErrorHandling(evt);
+        this.errorCheck.digitDoubleInputErrorHandling(evt);
     }//GEN-LAST:event_editWeightKeyTyped
 
     private void editYearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editYearKeyTyped
- digitDoubleInputErrorHandling(evt);
+ this.errorCheck.digitDoubleInputErrorHandling(evt);
         
         if(editYear.getText().length() == 4){
             evt.consume();
         }    }//GEN-LAST:event_editYearKeyTyped
 
     private void editMonthKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editMonthKeyTyped
-         digitDoubleInputErrorHandling(evt);
+         this.errorCheck.digitDoubleInputErrorHandling(evt);
         
         if(editMonth.getText().length() == 2){
             evt.consume();
@@ -474,7 +476,7 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editMonthKeyTyped
 
     private void editDayKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editDayKeyTyped
-         digitDoubleInputErrorHandling(evt);
+         this.errorCheck.digitDoubleInputErrorHandling(evt);
         
         if(editDay.getText().length() == 2){
             evt.consume();

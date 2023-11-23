@@ -22,11 +22,14 @@ int accountNum = 0;
         String dob;
         String units = "Metric";
         int age =0;
+      ErrorHandling_AccountInfo errorCheck;
+        
     /**
      * Creates new form AccountSettings
      */
     public CreateAccountUI() {
         initComponents();
+        this.errorCheck = new ErrorHandling_AccountInfo();
     }
 
     /**
@@ -158,6 +161,11 @@ int accountNum = 0;
         editLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editLastNameActionPerformed(evt);
+            }
+        });
+        editLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editLastNameKeyTyped(evt);
             }
         });
 
@@ -425,21 +433,21 @@ int accountNum = 0;
 
     private void editHeightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editHeightKeyTyped
 
-        digitDoubleInputErrorHandling(evt);
+        this.errorCheck.digitDoubleInputErrorHandling(evt);
 
     }//GEN-LAST:event_editHeightKeyTyped
 
     private void editWeightKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editWeightKeyTyped
-        digitDoubleInputErrorHandling(evt);
+        this.errorCheck.digitDoubleInputErrorHandling(evt);
         
     }//GEN-LAST:event_editWeightKeyTyped
 
     private void editFirstNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editFirstNameKeyTyped
-        alphaCharInputErrorHandling(evt);
+        this.errorCheck.alphaCharInputErrorHandling(evt);
     }//GEN-LAST:event_editFirstNameKeyTyped
 
     private void editYearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editYearKeyTyped
-        digitDoubleInputErrorHandling(evt);
+        this.errorCheck.digitDoubleInputErrorHandling(evt);
         
         if(editYear.getText().length() == 4){
             evt.consume();
@@ -447,7 +455,7 @@ int accountNum = 0;
     }//GEN-LAST:event_editYearKeyTyped
 
     private void editMonthKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editMonthKeyTyped
-        digitDoubleInputErrorHandling(evt);
+        this.errorCheck.digitDoubleInputErrorHandling(evt);
         
         if(editMonth.getText().length() == 2){
             evt.consume();
@@ -456,7 +464,7 @@ int accountNum = 0;
     }//GEN-LAST:event_editMonthKeyTyped
 
     private void editDayKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editDayKeyTyped
-        digitDoubleInputErrorHandling(evt);
+        this.errorCheck.digitDoubleInputErrorHandling(evt);
         
         if(editDay.getText().length() == 2){
             evt.consume();
@@ -470,34 +478,14 @@ int accountNum = 0;
         
     }//GEN-LAST:event_BackBTNActionPerformed
 
-    private void digitDoubleInputErrorHandling(java.awt.event.KeyEvent evt){
-         char typed = evt.getKeyChar();
-        
-        if(!Character.isDigit(typed)){
-            
-            if(typed == '.'){
-                return;
-            }
-            evt.consume();
-        }
-    }
-    
-    private void alphaCharInputErrorHandling(java.awt.event.KeyEvent evt){
-           char typed = evt.getKeyChar();
-        
-        if(!Character.isAlphabetic(typed)){
-            if(typed == '-'){
-                return;
-            }
-            
-            evt.consume();
-        }
-    }
+    private void editLastNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editLastNameKeyTyped
+this.errorCheck.alphaCharInputErrorHandling(evt);
+    }//GEN-LAST:event_editLastNameKeyTyped
+
+   
         
     
-    /**
-     * @param args the command line arguments
-     */
+    
     public void CreateAccUI() {
         
         /* Create and display the form */
