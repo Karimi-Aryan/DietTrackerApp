@@ -1,20 +1,20 @@
 
 public class DietData {
-    private Double nutrientValue;
-    private String nutrientName;
+    private Double FoodGroupCount;
+    private String FoodGroupName;
 	
-    public Double getNutrientValue() {
-		return nutrientValue;
+    public Double getFoodGroupCount() {
+		return FoodGroupCount;
 	}
-	public void setNutrientValue(Double nutrientValue) {
-		this.nutrientValue = nutrientValue;
+	public void setFoodGroupCount(Double FoodGroupCount) {
+		this.FoodGroupCount = FoodGroupCount;
 	}
 	
-	public String getNutrientName() {
-		return nutrientName;
+	public String getFoodGroupName() {
+		return FoodGroupName;
 	}
-	public void setNutrientName(String nutrientName) {
-		this.nutrientName = nutrientName;
+	public void setFoodGroupName(String FoodGroupName) {
+		this.FoodGroupName = FoodGroupName;
 	}
     
 }

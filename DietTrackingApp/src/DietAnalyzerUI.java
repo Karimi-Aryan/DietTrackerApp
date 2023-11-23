@@ -1,4 +1,11 @@
 import javax.swing.*;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.Plot;
+import org.jfree.data.general.DefaultPieDataset;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -85,7 +92,7 @@ public class DietAnalyzerUI extends JFrame {
         }
 
         // Uncomment the following code if using JFreeChart for pie chart visualization
-        /*
+        
         DefaultPieDataset dataset = new DefaultPieDataset();
         for (Map.Entry<String, Double> entry : nutrientPercentages.entrySet()) {
             dataset.setValue(entry.getKey(), entry.getValue());
@@ -101,8 +108,9 @@ public class DietAnalyzerUI extends JFrame {
 
         PiePlot plot = (PiePlot) chart.getPlot();
         plot.setSectionOutlinesVisible(false);
-        chartPanel.setChart(chart);
-        */
+        Plot chartPanel = null;
+		chartPanel.setChart(chart);
+        
 
         // Close the connection when done
         nutrientAnalyzer.closeConnection();

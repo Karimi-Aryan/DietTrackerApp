@@ -17,7 +17,7 @@ public class DietDataRepository implements DietDataInterface {
     @Override
 	public List<DietData> findByAccountID(int AccountID) {
 		List<DietData> dietDataList = new ArrayList<>();
-		String query = "SELECT * FROM diet_data WHERE AccountID = ?";
+		String query = "SELECT FoodGroupName, COUNT(*) as Count FROM meal_info WHERE AccountID = ? GROUP BY FoodGroupName";
 		try (Connection connect = sqlConnection.SQLConnect()) {
 			PreparedStatement pstmt = connect.prepareStatement(query);
   
@@ -27,8 +27,8 @@ public class DietDataRepository implements DietDataInterface {
                 while (rs.next()) {
                 	DietData dietData = new DietData();
                 	
-                	dietData.setNutrientValue(rs.getDouble("NutrientValue"));
-                	dietData.setNutrientName(rs.getString("NutrientName"));
+                	dietData.setFoodGroupCount(rs.getDouble("Count"));
+                	dietData.setFoodGroupName(rs.getString("FoodGroupName"));
                 	
                 	dietDataList.add(dietData);
                 }

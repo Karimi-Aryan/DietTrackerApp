@@ -18,9 +18,9 @@ public class DietDataService {
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
 
         for (DietData dietData : dietDataList) {
-            dataset.setValue(dietData.getNutrientName(), dietData.getNutrientValue());
+            dataset.setValue(dietData.getFoodGroupName(), dietData.getFoodGroupCount());
         }
 
-        return ChartFactory.createPieChart("User's Average Plate", dataset, true, true, false);
+        return ChartFactory.createPieChart("Your Average Plate: ", dataset, true, true, false);
     }
 }
