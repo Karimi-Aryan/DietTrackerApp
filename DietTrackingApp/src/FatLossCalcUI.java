@@ -345,7 +345,10 @@ public class FatLossCalcUI extends javax.swing.JFrame {
     }//GEN-LAST:event_OKbtnActionPerformed
 
     private void BackBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBTNActionPerformed
-        // TODO add your handling code here:
+        AccountHomePageUI home = new AccountHomePageUI();
+        home.HomePageUI(this.user);
+        dispose();
+        
     }//GEN-LAST:event_BackBTNActionPerformed
 
     private void BackBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackBTNMouseClicked

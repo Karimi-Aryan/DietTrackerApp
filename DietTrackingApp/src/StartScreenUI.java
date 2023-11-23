@@ -46,6 +46,7 @@ public class StartScreenUI extends javax.swing.JFrame {
         createProfilebtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         AccountList = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,12 +60,13 @@ public class StartScreenUI extends javax.swing.JFrame {
         jLabel1.setText("Choose Profile");
 
         AccountList.setModel(new DefaultComboBoxModel<>(this.accountList));
-        AccountList.setPreferredSize(new Dimension(150, 20)); // Set the new width here
         AccountList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AccountListActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Welcome to your Diet Tracker");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,25 +75,30 @@ public class StartScreenUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(createProfilebtn))
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AccountList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
-                .addContainerGap(132, Short.MAX_VALUE))
+                        .addGap(130, 130, 130)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(createProfilebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AccountList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jLabel2)))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel2)
+                .addGap(92, 92, 92)
                 .addComponent(createProfilebtn)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(AccountList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,7 +128,7 @@ public class StartScreenUI extends javax.swing.JFrame {
         AccountHomePageUI home = new AccountHomePageUI(localUser);
         home.HomePageUI(localUser);
         
-       dispose();
+      
        
     }//GEN-LAST:event_AccountListActionPerformed
 
@@ -175,5 +182,6 @@ public class StartScreenUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> AccountList;
     private javax.swing.JButton createProfilebtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
