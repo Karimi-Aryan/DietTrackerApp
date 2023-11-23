@@ -47,7 +47,7 @@ User user = new User();
         calorieIntakeGraphBTN = new javax.swing.JButton();
         bmrCalcBTN = new javax.swing.JButton();
         FatLossBTN = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        LogOutBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,10 +100,10 @@ User user = new User();
             }
         });
 
-        jButton1.setText("Log Out");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        LogOutBTN.setText("Log Out");
+        LogOutBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                LogOutBTNActionPerformed(evt);
             }
         });
 
@@ -114,7 +114,7 @@ User user = new User();
             .addGroup(layout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LogOutBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FatLossBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(calorieIntakeGraphBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -143,7 +143,7 @@ User user = new User();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FatLossBTN)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(LogOutBTN)
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -161,7 +161,8 @@ User user = new User();
     private void bmrCalcBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmrCalcBTNActionPerformed
 
         BMRcalculationUI bmr = new BMRcalculationUI(this.user);
-        bmr.BMRCalc(this.user);       
+        bmr.BMRCalc(this.user);  
+        dispose();
         
         
     }//GEN-LAST:event_bmrCalcBTNActionPerformed
@@ -212,10 +213,10 @@ fatLossCalc.FatLossCalc(this.user);
 dispose();
     }//GEN-LAST:event_FatLossBTNActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void LogOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBTNActionPerformed
        dispose();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_LogOutBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,10 +257,10 @@ dispose();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccountInfoUpdateBTN;
     private javax.swing.JButton FatLossBTN;
+    private javax.swing.JButton LogOutBTN;
     private javax.swing.JButton bmrCalcBTN;
     private javax.swing.JButton calorieIntakeGraphBTN;
     private javax.swing.JButton exerciseLoggingBTN;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton mealLoggingBTN;
     private javax.swing.JButton settingsChangeBTN;
     // End of variables declaration//GEN-END:variables

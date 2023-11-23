@@ -205,14 +205,14 @@
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Integer.toString(this.avgCalsConsumed)" type="code"/>
+          <Connection code="Integer.toString(this.avgCalsConsumed)+&quot; cals/day&quot;" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Integer.toString(this.avgCalsBurned)" type="code"/>
+          <Connection code="Integer.toString(this.avgCalsBurned)+ &quot; cals/day&quot;" type="code"/>
         </Property>
       </Properties>
     </Component>

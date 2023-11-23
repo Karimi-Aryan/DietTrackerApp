@@ -122,9 +122,9 @@ public class FatLossCalcUI extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 2, 10)); // NOI18N
         jLabel9.setText("* Avg is based on last 14 days");
 
-        jLabel10.setText(Integer.toString(this.avgCalsConsumed));
+        jLabel10.setText(Integer.toString(this.avgCalsConsumed)+" cals/day");
 
-        jLabel11.setText(Integer.toString(this.avgCalsBurned));
+        jLabel11.setText(Integer.toString(this.avgCalsBurned)+ " cals/day");
 
         OKbtn.setText("OK");
         OKbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -328,13 +328,13 @@ public class FatLossCalcUI extends javax.swing.JFrame {
         if(calsAfterBMR > 0){
             //fat will be gained 
             
-            JOptionPane.showMessageDialog(this, "Fat Loss has been calculated and you will gain "+fatGainedorLoss+unitsUsed);
+            JOptionPane.showMessageDialog(this, "You are projected to gain "+fatGainedorLoss+unitsUsed+" fat by "+date);
            FatLossResult.setText(Double.toString(fatGainedorLoss)+ unitsUsed);
             
         } else if (calsAfterBMR < 0){
             //fat will be lost
             fatGainedorLoss = fatGainedorLoss*-1;
-            JOptionPane.showMessageDialog(this, "Fat Loss has been calculated and you will lose "+fatGainedorLoss+unitsUsed);
+            JOptionPane.showMessageDialog(this, "You are projected to lose "+fatGainedorLoss+unitsUsed+" fat by "+date);
             FatLossResult.setText(Double.toString(fatGainedorLoss) + unitsUsed);
         }
           
