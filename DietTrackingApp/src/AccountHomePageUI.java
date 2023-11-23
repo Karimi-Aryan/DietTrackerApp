@@ -2,23 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author aryankarimi
  */
 public class AccountHomePageUI extends javax.swing.JFrame {
-User user = new User();
+    User user = new User();
     /**
      * Creates new form AccountHomePage
      */
     public AccountHomePageUI() {
         initComponents();
     }
-    
-     public AccountHomePageUI(User localUser) {
-         initComponents();
-         this.user = localUser;
+
+    public AccountHomePageUI(User localUser) {
+        initComponents();
+        this.user = localUser;
     }
 
     /**
@@ -36,7 +35,7 @@ User user = new User();
         exerciseLoggingBTN = new javax.swing.JButton();
         calorieIntakeGraphBTN = new javax.swing.JButton();
         bmrCalcBTN = new javax.swing.JButton();
-        FatLossBTN = new javax.swing.JButton();
+        nutrientIntakeBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +60,13 @@ User user = new User();
             }
         });
 
+        nutrientIntakeBTN.setText("Nutrient Intake");
+        nutrientIntakeBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nutrientIntakeBTNActionPerformed(evt);
+            }
+        });
+
         exerciseLoggingBTN.setText("Exercise Logging");
         exerciseLoggingBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,48 +88,40 @@ User user = new User();
             }
         });
 
-        FatLossBTN.setText("Fat Loss Calculator");
-        FatLossBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FatLossBTNActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FatLossBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(calorieIntakeGraphBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exerciseLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(mealLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(settingsChangeBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(AccountInfoUpdateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bmrCalcBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(calorieIntakeGraphBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(exerciseLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(mealLoggingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(nutrientIntakeBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(settingsChangeBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(AccountInfoUpdateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bmrCalcBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(133, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(AccountInfoUpdateBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(settingsChangeBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mealLoggingBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(exerciseLoggingBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(calorieIntakeGraphBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bmrCalcBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FatLossBTN)
-                .addContainerGap(37, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(AccountInfoUpdateBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(settingsChangeBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mealLoggingBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nutrientIntakeBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(exerciseLoggingBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(calorieIntakeGraphBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bmrCalcBTN)
+                                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,11 +136,10 @@ User user = new User();
     }//GEN-LAST:event_settingsChangeBTNActionPerformed
 
     private void bmrCalcBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmrCalcBTNActionPerformed
-
         BMRcalculationUI bmr = new BMRcalculationUI(this.user);
-        bmr.BMRCalc(this.user);       
-        
-        
+        bmr.BMRCalc(this.user);
+
+
     }//GEN-LAST:event_bmrCalcBTNActionPerformed
 
     private void AccountInfoUpdateBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountInfoUpdateBTNActionPerformed
@@ -157,22 +154,24 @@ User user = new User();
     }//GEN-LAST:event_AccountInfoUpdateBTNActionPerformed
 
     private void mealLoggingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mealLoggingBTNActionPerformed
-        // TODO add your handling code here:
+        MealLoggerUI mealLoggerUI = new MealLoggerUI(this.user);
+
     }//GEN-LAST:event_mealLoggingBTNActionPerformed
 
+    private void nutrientIntakeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nutrientIntakeBTNActionPerformed
+        DietAnalyzerUI dietAnalyzerUI = new DietAnalyzerUI(this.user.getAccID());
+    }//GEN-LAST:event_nutrientIntakeBTNActionPerformed
+
+
     private void exerciseLoggingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exerciseLoggingBTNActionPerformed
-        // TODO add your handling code here:
+        ExerciseLog exerciseLog = new ExerciseLog(this.user);
+        exerciseLog.ExerciseLogUI();
+        dispose();
     }//GEN-LAST:event_exerciseLoggingBTNActionPerformed
 
     private void calorieIntakeGraphBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calorieIntakeGraphBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_calorieIntakeGraphBTNActionPerformed
-
-    private void FatLossBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FatLossBTNActionPerformed
-FatLossCalcUI fatLossCalc = new FatLossCalcUI();
-fatLossCalc.FatLossCalc(this.user); 
-dispose();
-    }//GEN-LAST:event_FatLossBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,7 +180,7 @@ dispose();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -212,11 +211,11 @@ dispose();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccountInfoUpdateBTN;
-    private javax.swing.JButton FatLossBTN;
     private javax.swing.JButton bmrCalcBTN;
     private javax.swing.JButton calorieIntakeGraphBTN;
     private javax.swing.JButton exerciseLoggingBTN;
     private javax.swing.JButton mealLoggingBTN;
+    private javax.swing.JButton nutrientIntakeBTN;
     private javax.swing.JButton settingsChangeBTN;
     // End of variables declaration//GEN-END:variables
 }
