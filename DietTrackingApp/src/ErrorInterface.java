@@ -16,4 +16,6 @@ interface ErrorInterface {
     int EmptyCheck_Date(String year, String month, String day);
     int EmptyCheck_Name(String fname, String lname);
     int EmptyCheck_Units(String weight, String height);
+    void alphaCharInputErrorHandling(java.awt.event.KeyEvent evt);
+    void digitDoubleInputErrorHandling(java.awt.event.KeyEvent evt);
 }
