@@ -212,20 +212,7 @@ User user = new User();
     }//GEN-LAST:event_nutrientIntakeBTNActionPerformed
 
     private void visualizeAvgPlateBTNActionPerformed(java.awt.event.ActionEvent evt) {
-        DietDataService dietDataService = new DietDataService(this.user.getAccID());
-        JFreeChart chart = dietDataService.generateAveragePlate();
-
-        // GUI components to display the chart
-        JFrame frame = new JFrame("Diet Alignment UI");
-        ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(600, 500));
-        chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-        chartPanel.setBackground(Color.white);
-        frame.add(chartPanel, BorderLayout.CENTER);
-
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+     DietVizualizationUI dietVizualizationUI = new DietVizualizationUI(this.user.getAccID());
     }
     
     private void exerciseLoggingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exerciseLoggingBTNActionPerformed
