@@ -144,7 +144,6 @@ public class BMRcalculationUI extends javax.swing.JFrame {
         
         BMRCalculator bmr = new BMRCalculator();
        
-       System.out.println(this.weight);
        
        int bmrFinal = bmr.BMRCalc(this.height,this.weight,this.age,this.sex,this.units);
        

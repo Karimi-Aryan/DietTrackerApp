@@ -171,9 +171,7 @@ public class StartScreenUI extends javax.swing.JFrame {
         AccountSetUp getAccounts = new AccountSetUp();
         String accList [] = getAccounts.GetAllAccounts();
         
-        for (int i=0;i<accList.length;i++){
-        System.out.println(accList[i]);
-                }
+
         
         new StartScreenUI(accList).setVisible(true);
             }

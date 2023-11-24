@@ -35,7 +35,6 @@ public class SettingSetUp implements SettingsInterface {
              String sql = "update INFO set userUnits = 'Metric' where AccountID in ("+this.user.getAccID()+");";
              stm.executeUpdate(sql);
          
-             System.out.println("we did it?");
     
 }catch (Exception e){
     
@@ -50,12 +49,10 @@ public class SettingSetUp implements SettingsInterface {
           
             Statement stm = connect.createStatement();
             
-            System.out.println("we connected");
             
              String sql = "update INFO set userUnits = 'Imperial' where AccountID in ("+this.user.getAccID()+");";
              stm.executeUpdate(sql);
              
-             System.out.println("we did it?");
          
     
 }catch (Exception e){

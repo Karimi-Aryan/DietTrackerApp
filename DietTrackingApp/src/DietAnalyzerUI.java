@@ -1,9 +1,9 @@
 import javax.swing.*;
 
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
-import org.jfree.chart.plot.Plot;
 import org.jfree.data.general.DefaultPieDataset;
 
 import java.awt.*;
@@ -14,13 +14,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-// Class representing the user interface for diet analysis
+
 public class DietAnalyzerUI extends JFrame {
 
     private JTextField startDateField, endDateField;
     private JButton analyzeButton;
     private JComboBox<String> nutrientCountComboBox;
     private int accountID;
+    //private ChartPanel chartPanel;
 
     public DietAnalyzerUI(int accountID) {
         this.accountID = accountID;
@@ -32,6 +33,7 @@ public class DietAnalyzerUI extends JFrame {
         startDateField = new JTextField(10);
         endDateField = new JTextField(10);
         nutrientCountComboBox = new JComboBox<>(new String[]{"Top 5", "Top 10"});
+        //chartPanel = new ChartPanel(null);
 
         analyzeButton = new JButton("Analyze Diet");
         analyzeButton.addActionListener(new ActionListener() {
@@ -50,6 +52,7 @@ public class DietAnalyzerUI extends JFrame {
         inputPanel.add(new JLabel("Nutrients:"));
         inputPanel.add(nutrientCountComboBox);
         inputPanel.add(analyzeButton);
+        //panel.add(chartPanel);
 
         add(inputPanel, BorderLayout.CENTER);
 
@@ -91,26 +94,25 @@ public class DietAnalyzerUI extends JFrame {
             System.out.println(entry.getKey() + ": " + entry.getValue() + "%");
         }
 
-        // Uncomment the following code if using JFreeChart for pie chart visualization
-        
-        DefaultPieDataset dataset = new DefaultPieDataset();
+        DefaultPieDataset<String> dataset = new DefaultPieDataset<String>();
         for (Map.Entry<String, Double> entry : nutrientPercentages.entrySet()) {
             dataset.setValue(entry.getKey(), entry.getValue());
         }
 
+        // Create a chart
         JFreeChart chart = ChartFactory.createPieChart(
-                "Nutrient Distribution",
-                dataset,
+                "Nutrient Percentages",   // chart title
+                dataset,                  // dataset
+                true,                     // include legend
                 true,
-                true,
-                false
-        );
+                false);
 
-        PiePlot plot = (PiePlot) chart.getPlot();
-        plot.setSectionOutlinesVisible(false);
-        Plot chartPanel = null;
-		chartPanel.setChart(chart);
-        
+        // Create and display a frame containing the chart
+        JFrame frame = new JFrame("Nutrient Chart");
+        frame.setContentPane(new ChartPanel(chart));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(new Dimension(600, 400));
+        frame.setVisible(true);
 
         // Close the connection when done
         nutrientAnalyzer.closeConnection();

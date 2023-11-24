@@ -54,7 +54,7 @@ public class FatLossCalculator implements CalorieCounter{
           
           //get the Calories consumed over the last 14 days and number of entries 
           
-          String sqlQuery = "SELECT count(AccountID), sum(TotalCalories) FROM AccountInfo.new_table "
+          String sqlQuery = "SELECT count(AccountID), sum(TotalCalories) FROM calories_intake_info "
                   + "where AccountID = "+accID+" and Date between date_add(curdate(), interval -14 day) and curdate() and Date != curdate() "
                   + "ORDER BY DATE DESC "
                   + "LIMIT 14;";
@@ -95,7 +95,7 @@ public class FatLossCalculator implements CalorieCounter{
           
           //get the Calories consumed over the last 14 days and number of entries 
           
-          String sqlQuery = "SELECT count(AccountID), sum(CaloriesBurned) FROM AccountInfo.ExerciseT where AccountID = "+accID+" and Date between date_add(curdate(), interval -14 day) and curdate() and Date != curdate() ORDER BY DATE DESC LIMIT 14;";
+          String sqlQuery = "SELECT count(AccountID), sum(CaloriesBurnedTotal) FROM calories_total where AccountID = "+accID+" and Date between date_add(curdate(), interval -14 day) and curdate() and Date != curdate() ORDER BY DATE DESC LIMIT 14;";
           
           Statement stmt = connect.createStatement();
            ResultSet rs = stmt.executeQuery(sqlQuery);
