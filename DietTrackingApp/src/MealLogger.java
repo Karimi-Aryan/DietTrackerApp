@@ -64,7 +64,7 @@ public class MealLogger {
 
                   try (
                           // Execute a query to retrieve the nutrient name for the specified nutrient ID
-                          ResultSet nutrientNameResultSet = this.nutrientNameStatement.executeQuery("SELECT NutrientUnit, NutrientName FROM nutrient_info WHERE NutrientID = " + nutrientID)
+                          ResultSet nutrientNameResultSet = this.nutrientNameStatement.executeQuery("SELECT NutrientUnit, NutrientName FROM nutrient_name WHERE NutrientID = " + nutrientID)
                   ) {
                      if (nutrientNameResultSet.next()) {
                         String nutrientName = nutrientNameResultSet.getString("NutrientName");
@@ -133,7 +133,7 @@ public class MealLogger {
          // Check if an entry already exists for the specified account and date
          if (entryExistsForAccountAndDate(accountID, date)) {
             // If entry exists, update the total calories
-            String updateQuery = "UPDATE calories_info SET TotalCalories = TotalCalories + ? WHERE AccountID = ? AND Date = ?";
+            String updateQuery = "UPDATE calories_intake_info SET TotalCalories = TotalCalories + ? WHERE AccountID = ? AND Date = ?";
             try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
                updateStatement.setDouble(1, totalCalories);
                updateStatement.setInt(2, accountID);
@@ -142,7 +142,7 @@ public class MealLogger {
             }
          } else {
             // If entry does not exist, insert a new row with the total calories
-            String insertQuery = "INSERT INTO calories_info (AccountID, TotalCalories, Date) VALUES (?, ?, ?)";
+            String insertQuery = "INSERT INTO calories_intake_info (AccountID, TotalCalories, Date) VALUES (?, ?, ?)";
             try (PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
                insertStatement.setInt(1, accountID);
                insertStatement.setDouble(2, totalCalories);
@@ -160,7 +160,7 @@ public class MealLogger {
    private boolean entryExistsForAccountAndDate(int accountID, String date) {
       try (
               // Execute a query to check for the existence of an entry for the specified account and date
-              ResultSet resultSet = this.dietStatement.executeQuery("SELECT * FROM calories_info WHERE AccountID = " + accountID + " AND Date = '" + date + "'")
+              ResultSet resultSet = this.dietStatement.executeQuery("SELECT * FROM calories_intake_info WHERE AccountID = " + accountID + " AND Date = '" + date + "'")
       ) {
          return resultSet.next(); // If resultSet has a next row, entry exists
       } catch (SQLException e) {
@@ -171,10 +171,10 @@ public class MealLogger {
 
 
    // Private method to check if an entry already exists for a specific meal type and date
-   public boolean entryExistsForMealType(String mealType, String date) {
+   public boolean entryExistsForMealType(String mealType, String date, int accountID) {
       try (
               // Execute a query to check for the existence of an entry for the specified meal type and date
-              ResultSet resultSet = this.dietStatement.executeQuery("SELECT * FROM user_diet WHERE MealType = '" + mealType + "' AND LogDate = '" + date + "'")
+              ResultSet resultSet = this.dietStatement.executeQuery("SELECT * FROM meal_info WHERE MealType = '" + mealType + "' AND LogDate = '" + date + "'AND AccountID = '" + accountID + "'")
       ) {
          return resultSet.next(); // If resultSet has a next row, entry exists
       } catch (SQLException e) {

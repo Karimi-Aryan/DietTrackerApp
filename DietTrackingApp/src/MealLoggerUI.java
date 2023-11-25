@@ -18,7 +18,7 @@ public class MealLoggerUI extends javax.swing.JFrame{
     // Constructor to initialize the UI
     public MealLoggerUI(User localUser) {
         mealValidator = new MealValidator(); // Initialize the meal validator
-        mealLogger = new MealLogger(); //Initialize the meal logger
+        mealLogger = new MealLogger();
         accountID = localUser.getAccID();
 
 
@@ -75,15 +75,9 @@ public class MealLoggerUI extends javax.swing.JFrame{
         String mealName = mealNameTextField.getText();
         String logDate = logDateTextField.getText();
 
-        if (!mealType.equals("Snacks")) {
-            if (entryExistsForMealType(mealType, logDate)) {
-                JOptionPane.showMessageDialog(this, "Entry for " + mealType + " already exists on " + logDate + ". Cannot log another entry.");
-                return;
-            }
-        }
         // Validate input using MealValidator
         // Check if the meal type is valid
-        if (!MealValidator.isValidMealType(mealType)) {
+        if (!mealValidator.isValidMealType(mealType)) {
             JOptionPane.showMessageDialog(this, "Invalid meal type. Please select a valid meal type.");
             return;
         }
@@ -95,29 +89,34 @@ public class MealLoggerUI extends javax.swing.JFrame{
         }
 
         // Check if the date is valid
-        if (!MealValidator.isValidDate(logDate)) {
-            JOptionPane.showMessageDialog(this, "Invalid date format. Please use the format: yyyy-MM-dd");
+        if (!mealValidator.isValidDate(logDate)) {
+            JOptionPane.showMessageDialog(this, "Invalid date. Please use the format: yyyy-MM-dd");
             return;
+        }
+        if (!mealType.equals("Snacks")) {
+            if (entryExistsForMealType(mealType, logDate, accountID)) {
+                JOptionPane.showMessageDialog(this, "Entry for " + mealType + " already exists on " + logDate + ". Cannot log another entry.");
+                return;
+            }
         }
 
         // If all input is valid, proceed to log the meal
-        MealLogger mealLogger = new MealLogger();
+
         boolean isMealLogged = mealLogger.logMeal(this.accountID, mealType, mealName, logDate);
 
         // Display success message if the meal is logged successfully
         if (isMealLogged) {
             JOptionPane.showMessageDialog(this, "Meal logged successfully!");
         }
-
         dispose(); // Close the frame after a successful meal log
+
         mealValidator.closeConnections();
         mealLogger.closeConnections();
 
     }
-
-    private boolean entryExistsForMealType(String mealType, String date) {
+    private boolean entryExistsForMealType(String mealType, String date, int accountID) {
         MealLogger mealLogger = new MealLogger();
-        boolean entryExists = mealLogger.entryExistsForMealType(mealType, date);
+        boolean entryExists = mealLogger.entryExistsForMealType(mealType, date, accountID);
         mealLogger.closeConnections();
         return entryExists;
     }
