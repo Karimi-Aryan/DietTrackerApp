@@ -171,10 +171,10 @@ public class MealLogger {
 
 
    // Private method to check if an entry already exists for a specific meal type and date
-   public boolean entryExistsForMealType(String mealType, String date) {
+   public boolean entryExistsForMealType(String mealType, String date, int accountID) {
       try (
               // Execute a query to check for the existence of an entry for the specified meal type and date
-              ResultSet resultSet = this.dietStatement.executeQuery("SELECT * FROM user_diet WHERE MealType = '" + mealType + "' AND LogDate = '" + date + "'")
+              ResultSet resultSet = this.dietStatement.executeQuery("SELECT * FROM meal_info WHERE MealType = '" + mealType + "' AND LogDate = '" + date + "'AND AccountID = '" + accountID + "'")
       ) {
          return resultSet.next(); // If resultSet has a next row, entry exists
       } catch (SQLException e) {
@@ -214,4 +214,3 @@ public class MealLogger {
       }
    }
 }
-

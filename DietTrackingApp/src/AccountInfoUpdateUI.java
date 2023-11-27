@@ -380,7 +380,7 @@ public class AccountInfoUpdateUI extends javax.swing.JFrame {
 		User userErrorCheck = new User(user.getAccID(),firstName, lastName, age, weight, height, sex, units, dob);
 
 		ErrorHandling_AccountInfo check = new ErrorHandling_AccountInfo(userErrorCheck);
-
+		if (check.ErrorCheck_Date(dob) == 1) return;
 		try{
 
 			int errorControl = check.ErrorCheck_AccountInfo();

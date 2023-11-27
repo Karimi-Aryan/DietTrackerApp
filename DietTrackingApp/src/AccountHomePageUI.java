@@ -24,11 +24,14 @@ User user = new User();
      */
     public AccountHomePageUI() {
         initComponents();
+        setTitle("Diet Tracker Home Page");
     }
     
      public AccountHomePageUI(User localUser) {
          initComponents();
          this.user = localUser;
+         setTitle("Diet Tracker Home Page");
+
     }
 
     /**

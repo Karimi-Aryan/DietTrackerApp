@@ -43,8 +43,7 @@ public class EnergyExpenditureUI extends JFrame {
         this.accountID = accountID;
         this.sqlConnection = new SQLConnection();
         setTitle("Daily Calory Intake VS Daily Energy Expenditure");
-        setSize(400, 200);
-//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(300, 150);
 
         startDateField = new JTextField(10);
         endDateField = new JTextField(10);
@@ -58,7 +57,7 @@ public class EnergyExpenditureUI extends JFrame {
         });
 
         setLayout(new BorderLayout());
-        JPanel inputPanel = new JPanel(new GridLayout(3, 2)); // Grid should be 3x2, since we have 3 rows of labels and text fields
+        JPanel inputPanel = new JPanel(new GridLayout(2, 2)); // Grid should be 3x2, since we have 3 rows of labels and text fields
 
         inputPanel.add(new JLabel("Start date (yyyy-MM-dd):"));
         inputPanel.add(startDateField);
@@ -67,6 +66,7 @@ public class EnergyExpenditureUI extends JFrame {
         inputPanel.add(analyzeButton);
 
         add(inputPanel, BorderLayout.CENTER);
+        add(analyzeButton, BorderLayout.SOUTH);
         setLocationRelativeTo(null);
         setVisible(true);
     }

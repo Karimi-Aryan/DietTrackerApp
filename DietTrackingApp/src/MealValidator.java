@@ -2,9 +2,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 // Class responsible for validating meal-related data
 public class MealValidator {
@@ -16,9 +15,6 @@ public class MealValidator {
     // Constructor to establish a connection to the database
     public MealValidator() {
         try {
-            // Connect to the MySQL database with the specified credentials
-            // Note: It's a good practice to use a try-with-resources statement for AutoCloseable resources like Connection
-            //this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/DietTracker", "root", "Tenzin110");
             SQLConnection sqlConnect = new SQLConnection();
             this.connection = sqlConnect.SQLConnect();
 
@@ -30,7 +26,7 @@ public class MealValidator {
     }
 
     // Method to check if a meal type is valid
-    public static boolean isValidMealType(String mealType) {
+    public boolean isValidMealType(String mealType) {
         return mealType != null && !mealType.trim().isEmpty();
     }
 
@@ -52,18 +48,18 @@ public class MealValidator {
     }
 
     // Method to check if a date is valid
-    public static boolean isValidDate(String date) {
-        // Use a SimpleDateFormat to parse and validate the date format (yyyy-MM-dd)
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateFormat.setLenient(false);
+    public boolean isValidDate(String date) {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         try {
-            Date parsedDate = dateFormat.parse(date);
+            LocalDate parsedDate = LocalDate.parse(date, dateFormatter);
             return true; // If parsing is successful, the date is valid
-        } catch (ParseException e) {
+        } catch (Exception e) {
             return false; // If an exception occurs during parsing, the date is not valid
         }
     }
+
+
 
     // Method to close database connections
     public void closeConnections() {

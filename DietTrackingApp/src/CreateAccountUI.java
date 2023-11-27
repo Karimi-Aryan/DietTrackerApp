@@ -326,7 +326,7 @@ int accountNum = 0;
       if(emptyCheck.EmptyCheck_Name(editFirstName.getText(), editLastName.getText()) == 1) return;
       if(emptyCheck.EmptyCheck_Units(editWeight.getText(), editHeight.getText()) == 1) return;
       if(emptyCheck.EmptyCheck_Date(editYear.getText(), editMonth.getText(), editDay.getText()) == 1) return;
-      
+      if(emptyCheck.ErrorCheck_Date(dob) == 1) return;
       //Clean up dates by adding 0 to single digits 1-9 for month and day
         
       String [] dateSplit = emptyCheck.DateCleanUp(editYear.getText(),editMonth.getText(),editDay.getText());
