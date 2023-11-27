@@ -28,7 +28,7 @@ public class DietAnalyzerUI extends JFrame {
 
         setTitle("Diet Analyzer");
         setSize(400, 200);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+   //     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         startDateField = new JTextField(10);
         endDateField = new JTextField(10);
@@ -91,7 +91,7 @@ public class DietAnalyzerUI extends JFrame {
         NutrientAnalyzer nutrientAnalyzer = new NutrientAnalyzer();
         Map<String, Double> nutrientPercentages = nutrientAnalyzer.getTopNutrients(startDateText, endDateText, nutrientCount, this.accountID);
         for (Map.Entry<String, Double> entry : nutrientPercentages.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue() + "%");
+//            System.out.println(entry.getKey() + ": " + entry.getValue() + "%");
         }
 
         DefaultPieDataset<String> dataset = new DefaultPieDataset<String>();
@@ -110,7 +110,7 @@ public class DietAnalyzerUI extends JFrame {
         // Create and display a frame containing the chart
         JFrame frame = new JFrame("Nutrient Chart");
         frame.setContentPane(new ChartPanel(chart));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(new Dimension(600, 400));
         frame.setVisible(true);
 

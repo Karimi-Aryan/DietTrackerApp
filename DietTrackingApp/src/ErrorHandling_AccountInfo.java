@@ -155,9 +155,8 @@ public class ErrorHandling_AccountInfo implements ErrorInterface {
         return monthAndDay;
    }
    
-   public int EmptyCheck_Date(String year, String month, String day){
-       if (year.length() <4 || month.length()<2 || day.length() <2){
-           
+    public int EmptyCheck_Date(String year, String month, String day){
+        if(year.equals("") || month.equals("") || day.equals("")){
            JOptionPane.showMessageDialog(null, "Please put a valid date"
                     , "Invalid Date of Birth: ", JOptionPane.ERROR_MESSAGE);
            return 1;

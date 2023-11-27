@@ -44,7 +44,7 @@ public class EnergyExpenditureUI extends JFrame {
         this.sqlConnection = new SQLConnection();
         setTitle("Daily Calory Intake VS Daily Energy Expenditure");
         setSize(400, 200);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         startDateField = new JTextField(10);
         endDateField = new JTextField(10);
@@ -134,11 +134,11 @@ public class EnergyExpenditureUI extends JFrame {
                 "Calories",
                 dataset);
 
-     /*   CategoryPlot plot = barChart.getCategoryPlot();
+        CategoryPlot plot = barChart.getCategoryPlot();
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
         renderer.setSeriesPaint(0, Color.blue);
         renderer.setSeriesPaint(1, Color.green);
-*/
+
         ChartPanel chartPanel = new ChartPanel(barChart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
         JFrame chartFrame = new JFrame("Calorie Analysis");
