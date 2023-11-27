@@ -11,7 +11,7 @@ public class DietDataRepository implements DietDataInterface {
 	private SQLConnection sqlConnection;
 
 	public DietDataRepository() {
-		this.sqlConnection = new SQLConnection(); // Create a new SQLConnection instance
+		this.sqlConnection = new SQLConnection();
 	}
 
 	@Override
