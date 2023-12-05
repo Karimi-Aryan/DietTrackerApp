@@ -326,7 +326,6 @@ int accountNum = 0;
       if(emptyCheck.EmptyCheck_Name(editFirstName.getText(), editLastName.getText()) == 1) return;
       if(emptyCheck.EmptyCheck_Units(editWeight.getText(), editHeight.getText()) == 1) return;
       if(emptyCheck.EmptyCheck_Date(editYear.getText(), editMonth.getText(), editDay.getText()) == 1) return;
-      if(emptyCheck.ErrorCheck_Date(dob) == 1) return;
       //Clean up dates by adding 0 to single digits 1-9 for month and day
         
       String [] dateSplit = emptyCheck.DateCleanUp(editYear.getText(),editMonth.getText(),editDay.getText());
@@ -354,6 +353,9 @@ int accountNum = 0;
         User userErrorCheck = new User(accountNum,firstName, lastName, age, weight, height, sex, units, dob);
         
         ErrorHandling_AccountInfo check = new ErrorHandling_AccountInfo(userErrorCheck);
+        
+        if(emptyCheck.ErrorCheck_Date(dob) == 1) return;
+
         
         try{
             
@@ -412,7 +414,7 @@ int accountNum = 0;
         
         
         
-        
+     /*   
         System.out.println(firstName);
         System.out.println(lastName);
         System.out.println(sex);
@@ -420,7 +422,7 @@ int accountNum = 0;
         System.out.println(weight);
         System.out.println(age);
         
-        
+        */
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void editLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLastNameActionPerformed
